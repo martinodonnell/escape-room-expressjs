@@ -1,25 +1,10 @@
-function openImage(cookieKey, imageURL) {
+const panorama = "images/kitchen/kitchen.jpg";
+const panoramaCaption = "Kitchen";
+
+const openImage = (cookieKey, imageURL) => {
   setCookieDB(cookieKey);
   window["open"](`images/${imageURL}`);
-}
-
-function openCoffee() {
-  setCookieDB("coffee-sheet");
-  window["open"]("images/kitchen/an-clock.png");
-}
-
-function openTea() {
-  setCookieDB("tea-sheet");
-  window["open"]("images/kitchen/an-the.png");
-}
-
-function openSugar() {
-  openImage("sugar-sheet", "kitchen/an-start.png");
-}
-
-function openRecipeBook() {
-  openImage("sugar-sheet", "kitchen/n-start.png");
-}
+};
 
 function enterKeypad() {
   if (document["getElementById"]("trunkpass")["value"] == "start the clock") {
@@ -38,30 +23,69 @@ function updateKeypad() {
   }
   return null;
 }
-function getKitchenNote() {
-  setCookieDB("kitchen-note");
-  window["open"]("images/kitchen/cook-book.png");
-}
 
-var coffeePopup =
-  '<h1>Coffee Tin</h1><p>Inside the container you find a rolled up piece of paper</p><a href="#" onClick="openCoffee();"><img src="images/kitchen/an-clock.png" width="50%"></a>';
-var teaPopup =
-  '<h1>Coffee Tin</h1><p>Inside the container you find a rolled up piece of paper</p><a href="#" onClick="openTea();"><img src="images/kitchen/an-the.png" width="50%"></a>';
-var sugarPopup =
-  '<h1>Coffee Tin</h1><p>Inside the container you find a rolled up piece of paper</p><a href="#" onClick="openSugar();"><img src="images/kitchen/an-start.png" width="50%"></a>';
-var cookBookPopup =
-  '<h1>Recipe Book</h1><p>Book of recipes</p><a href="#" onClick="openRecipeBook();">Examine</a>';
+const generateSimpleImageClickable = ({
+  title,
+  description,
+  cookieKey,
+  imageURL,
+  popupURL,
+}) => {
+  var html = "";
+  html += `<h1>${title}</h1>`;
+  html += `<p>${description}</p>`;
+  html += `<a href="#" onClick="openImage('${cookieKey}','${imageURL}')">`;
+  html += `<img src="images/${popupURL}" width="50%"></a>`;
+  return html;
+};
+
+var popupDetails = {
+  coffee: {
+    title: "Coffee Tin",
+    description: "Inside the container you find a rolled up piece of paper",
+    cookieKey: "coffee-sheet",
+    imageURL: "kitchen/an-clock.png",
+    popupURL: "kitchen/an-clock.png",
+  },
+  tea: {
+    title: "Tea Tin",
+    description: "Inside the container you find a rolled up piece of paper",
+    cookieKey: "tea-sheet",
+    imageURL: "kitchen/an-the.png",
+    popupURL: "kitchen/an-the.png",
+  },
+  sugar: {
+    title: "Sugar Tin",
+    description: "Inside the container you find a rolled up piece of paper",
+    cookieKey: "sugar-sheet",
+    imageURL: "kitchen/an-start.png",
+    popupURL: "kitchen/an-start.png",
+  },
+  cookBook: {
+    title: "Recipe Book",
+    description: "Book of recipes",
+    cookieKey: "cook-book",
+    imageURL: "kitchen/cookbook.pdf",
+    popupURL: "kitchen/cookbook.pdf",
+  },
+  kitchenNote: {
+    title: "Cupboard",
+    description: "There's a scrunched up piece of paper",
+    cookieKey: "kitchen-note",
+    imageURL: "kitchen/kitchen-note.png",
+    popupURL: "kitchen/scrunched-paper-ball.jpg",
+  },
+};
+
 var keypadPopup =
   '<div id=keypad><h1>Keypad</h1><p>Enter the code to <b>start</b> time travel</p><input type="text" id="trunkpass" placeholder="Enter Unlock Code"><div id="keypadFeedback" style="color:red;"></div><a href="#" onClick="enterKeypad();">Enter</a></div>';
 var keypadPopupNav =
   "<b>Correct password, you can not move through time</b><button class='button' onclick='moveTavern()'>Tavern</button><button class='button' onclick='moveLink()'>Link</button><button class='button' onclick='moveLibrary()'>Library</button>";
-var kitchenNote =
-  '<h1>Cupboard</h1><p>There\'s a scrunched up piece of paper</p><a href="#" onClick="getKitchenNote();"><img src="images/kitchen/scrunched-paper-ball.jpg" width="50%"></a>';
 
 const viewer = new PhotoSphereViewer.Viewer({
   container: document.querySelector("#viewer"),
-  panorama: "images/kitchen/kitchen.jpg",
-  caption: "Kitchen",
+  panorama: panorama,
+  caption: panoramaCaption,
   navbar: [
     "zoom",
     {
@@ -96,7 +120,7 @@ const viewer = new PhotoSphereViewer.Viewer({
               stroke: "rgba(200, 0, 50, 0)",
               strokeWidth: "2px",
             },
-            content: coffeePopup,
+            content: generateSimpleImageClickable(popupDetails["coffee"]),
           },
           {
             id: "tea-svg",
@@ -113,7 +137,7 @@ const viewer = new PhotoSphereViewer.Viewer({
               stroke: "rgba(200, 0, 50, 0)",
               strokeWidth: "2px",
             },
-            content: teaPopup,
+            content: generateSimpleImageClickable(popupDetails["tea"]),
           },
           {
             id: "sugar-svg",
@@ -130,7 +154,7 @@ const viewer = new PhotoSphereViewer.Viewer({
               stroke: "rgba(200, 0, 50, 0)",
               strokeWidth: "2px",
             },
-            content: sugarPopup,
+            content: generateSimpleImageClickable(popupDetails["sugar"]),
           },
           {
             id: "book-table-svg",
@@ -147,7 +171,7 @@ const viewer = new PhotoSphereViewer.Viewer({
               stroke: "rgba(200, 0, 50, 0)",
               strokeWidth: "2px",
             },
-            content: cookBookPopup,
+            content: generateSimpleImageClickable(popupDetails["cookBook"]),
           },
           {
             id: "keypad-svg",
@@ -181,7 +205,7 @@ const viewer = new PhotoSphereViewer.Viewer({
               stroke: "rgba(200, 0, 50, 0)",
               strokeWidth: "2px",
             },
-            content: kitchenNote,
+            content: generateSimpleImageClickable(popupDetails["kitchenNote"]),
           },
         ],
       },

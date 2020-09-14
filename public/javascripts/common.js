@@ -111,7 +111,7 @@ function navRoute(url = "/") {
 const viewItems = [
   {
     cookieKey: "kitchenNote",
-    imageURL: "kitchen/cook-book.png",
+    imageURL: "kitchen/kitchen-note.png",
     displayName: "Kitchen Note",
   },
   {
