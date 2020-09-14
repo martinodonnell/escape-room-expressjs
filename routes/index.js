@@ -6,18 +6,17 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Home" });
 });
 
-const escapeRoomEJS = "room";
-router.get("/kitchen", function (req, res, next) {
-  res.render(escapeRoomEJS, { title: "Kitchen", js: "kitchen" });
-});
-router.get("/tavern", function (req, res, next) {
-  res.render(escapeRoomEJS, { title: "Tavern", js: "tavern" });
-});
-router.get("/link", function (req, res, next) {
-  res.render(escapeRoomEJS, { title: "Link", js: "link" });
-});
-router.get("/library", function (req, res, next) {
-  res.render(escapeRoomEJS, { title: "Library", js: "library" });
+const routes = [
+  { url: "kitchen", title: "Kitchen", js: "kitchen" },
+  { url: "tavern", title: "Tavern", js: "tavern" },
+  { url: "link", title: "Link", js: "link" },
+  { url: "library", title: "Library", js: "library" },
+];
+
+routes.forEach((route) => {
+  router.get(`/${route.url}`, function (req, res, next) {
+    res.render("room", { title: route.title, js: route.js });
+  });
 });
 
 module.exports = router;
