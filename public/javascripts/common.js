@@ -23,127 +23,63 @@ function buildItemLine(imgURL, displayName) {
   return `<p><a href="images/${imgURL}" target="_blank">${displayName}</a></p>`;
 }
 
-function showItems() {
-  var modalContents = "<p><b>Items you can view - Click to view</b></p>";
-  //kitchen
-  if (getCookie("kitchenNote") !== null) {
-    modalContents += buildItemLine("kitchen/cook-book.png", "Kitchen Note");
-  }
+const buildEquitItem = (cookieKey, displayName) => {
+  return `<p><a onClick=\"selectItem(${cookieKey},${displayName})\" target=\"_blank\">${displayName}</a></p>`;
+};
 
-  if (getCookie("sugar-sheet") !== null) {
-    modalContents +=
-      '<p><a href="images/kitchen/an-start.png" target="_blank">Sugar Paper</a></p>';
-  }
+const generateViewItemsModelHtml = () => {
+  var modalContents = "";
+  viewItems.forEach((item) => {
+    if (getCookie(item.cookieKey) !== null) {
+      modalContents += buildItemLine(item.imageURL, item.displayName);
+    }
+  });
+  return modalContents;
+};
 
-  if (getCookie("tea-sheet") !== null) {
-    modalContents +=
-      '<p><a href="images/kitchen/an-the.png" target="_blank">Tea Paper</a></p>';
-  }
+const generateEquitableItems = () => {
+  var modalContents = "";
+  equipItems.forEach((item) => {
+    if (getCookie(item.cookieKey) !== null) {
+      modalContents += buildEquitItem(item.cookieKey, item.displayName);
+    }
+  });
+  return modalContents;
+};
 
-  if (getCookie("coffee-sheet") !== null) {
-    modalContents +=
-      '<p><a href="images/kitchen/an-clock.png" target="_blank">Coffee Paper</a></p>';
-  }
+const generateNoneClickableItems = () => {
+  var modalContents = "";
+  equipItems.forEach((item) => {
+    if (getCookie(item.cookieKey) !== null) {
+      modalContents += `<p>${item.displayName}</p>`;
+    }
+  });
+  return modalContents;
+};
 
-  if (getCookie("cook-book") !== null) {
-    modalContents +=
-      '<p><a href="images/kitchen/cook-book.pdf" target="_blank">Cook Book</a></p>';
-  }
-
-  //links
-  if (getCookie("kettle-note") !== null) {
-    modalContents +=
-      '<p><a href="images/link/kettle-note.pdf" target="_blank">Kettle Notes</a></p>';
-  }
-  if (getCookie("riddle-book") !== null) {
-    modalContents +=
-      '<p><a href="images/link/riddle-book.pdf" target="_blank">Riddle Book</a></p>';
-  }
-  if (getCookie("martha-note") !== null) {
-    modalContents +=
-      '<p><a href="images/tavern/martha-note.png" target="_blank">Martha Note</a></p>';
-  }
-
-  //tavern
-  if (getCookie("glass-note") !== null) {
-    modalContents +=
-      '<p><a href="images/tavern/decipher.png" target="_blank">Note in bottle</a></p>';
-  }
-
-  //library
-
-  if (getCookie("loose-recipe") !== null) {
-    modalContents +=
-      '<p><a href="images/library/missing-recipe.png" target="_blank">Loose Recipe</a></p>';
-  }
-
-  if (getCookie("recipe-codes") !== null) {
-    modalContents +=
-      '<p><a href="images/library/recipe-codes.png" target="_blank">Recipe Codes</a></p>';
-  }
-
-  if (getCookie("globe") !== null) {
-    modalContents +=
-      '<p><a href="images/tavern/decipher.png" target="_blank">Globe</a></p>';
-  }
-
-  modalContents += "<p><b>Equipment </b></p>";
-  modalContents += "<p id='current-item'>Current Item: Empty</p>";
-
-  //tavern
-  if (getCookie("spectacles") !== null) {
-    modalContents +=
-      "<p><a onClick=\"selectItem('spectacles','Spectacles')\" target=\"_blank\">Spectacles</a></p>";
-  }
-  if (getCookie("hammer") !== null) {
-    modalContents +=
-      "<p><a onClick=\"selectItem('hammer','Hammer')\" target=\"_blank\">Hammer</a></p>";
-  }
-  if (getCookie("library-key") !== null) {
-    modalContents +=
-      "<p><a onClick=\"selectItem('library-key','Library Key')\" target=\"_blank\">Library Key</a></p>";
-  }
-  if (getCookie("tavern-key") !== null) {
-    modalContents +=
-      "<p><a onClick=\"selectItem('tavern-key','Tavern Key')\" target=\"_blank\">Tavern Key</a></p>";
-  }
-  if (getCookie("flint") !== null) {
-    modalContents +=
-      "<p><a onClick=\"selectItem('flint','Flint and Steel')\" target=\"_blank\">Flint and Steel</a></p>";
-  }
-  if (getCookie("take-final-meal") !== null) {
-    modalContents +=
-      "<p><a onClick=\"selectItem('take-final-meal','Pollastro Arrosto')\" target=\"_blank\">Pollastro Arrosto</a></p>";
-  }
-  modalContents += "<p><b>Ingredients</b></p>";
-
-  if (getCookie("orange-juice") !== null) {
-    modalContents += "<p>half cup of Orange Juice</p>";
-  }
-  if (getCookie("chicken") !== null) {
-    modalContents += "<p>2 pounds of Chicken</p>";
-  }
-  if (getCookie("blossom-water") !== null) {
-    modalContents += "<p>1 tsp Orange Blossom Water</p>";
-  }
-  if (getCookie("sugar") !== null) {
-    modalContents += "<p>1 tsp Sugar</p>";
-  }
-  if (getCookie("cinnamon") !== null) {
-    modalContents += "<p>1 tsp Cinnamon</p>";
-  }
-  if (getCookie("goblet-water") !== null) {
-    modalContents += "<p>Cup of Verjuice</p>";
-  }
-
-  document["getElementById"]("items")["innerHTML"] = modalContents;
-
-  // set current item
+function setSelectedItem() {
   var currentItem = getCookie("currentItem");
   if (currentItem !== null) {
     document["getElementById"]("current-item")["innerHTML"] =
       "<p>Current Item: " + currentItem + "</p>";
   }
+}
+
+function showItems() {
+  var modalContents = "";
+  modalContents += "<h3><b>Items you can view</b></h3>";
+  modalContents += generateViewItemsModelHtml();
+
+  modalContents += "<h3><b>Equipment </b></h3>";
+  modalContents += "<p id='current-item'>Current Item: Empty</p>";
+  modalContents += generateEquitableItems();
+
+  modalContents += "<h3><b>Ingredients</b></h3>";
+  modalContents += generateNoneClickableItems();
+
+  document["getElementById"]("items")["innerHTML"] = modalContents;
+
+  setSelectedItem();
 
   $("#exampleModal").modal();
 }
@@ -171,3 +107,120 @@ function moveLibrary() {
 function navRoute(url = "/") {
   window.location.href = url;
 }
+
+const viewItems = [
+  {
+    cookieKey: "kitchenNote",
+    imageURL: "kitchen/cook-book.png",
+    displayName: "Kitchen Note",
+  },
+  {
+    cookieKey: "sugar-sheet",
+    imageURL: "kitchen/an-start.png",
+    displayName: "Sugar Paper",
+  },
+  {
+    cookieKey: "tea-sheet",
+    imageURL: "kitchen/an-the.png",
+    displayName: "Tea Paper",
+  },
+  {
+    cookieKey: "coffee-sheet",
+    imageURL: "kitchen/an-clock.png",
+    displayName: "Coffee Paper",
+  },
+  {
+    cookieKey: "cook-book",
+    imageURL: "kitchen/cook-book.pdf",
+    displayName: "Cook Book",
+  },
+  {
+    cookieKey: "kettle-note",
+    imageURL: "link/kettle-note.pdf",
+    displayName: "Kettle Notes",
+  },
+  {
+    cookieKey: "riddle-book",
+    imageURL: "link/riddle-book.pdf",
+    displayName: "Riddle Book",
+  },
+  {
+    cookieKey: "martha-note",
+    imageURL: "tavern/martha-note.png",
+    displayName: "Martha Note",
+  },
+  {
+    cookieKey: "glass-note",
+    imageURL: "tavern/decipher.png",
+    displayName: "Note in bottle",
+  },
+  {
+    cookieKey: "loose-recipe",
+    imageURL: "library/missing-recipe.png",
+    displayName: "Loose Recipe",
+  },
+  {
+    cookieKey: "recipe-codes",
+    imageURL: "library/recipe-codes.png",
+    displayName: "Recipe Codes",
+  },
+  {
+    cookieKey: "globe",
+    imageURL: "tavern/decipher.png",
+    displayName: "Globe",
+  },
+];
+
+const equipItems = [
+  {
+    cookieKey: "spectacles",
+    displayName: "Spectacles",
+  },
+  {
+    cookieKey: "hammer",
+    displayName: "Hammer",
+  },
+  {
+    cookieKey: "library-key",
+    displayName: "Library Key",
+  },
+  {
+    cookieKey: "tavern-key",
+    displayName: "Tavern Key",
+  },
+  {
+    cookieKey: "flint",
+    displayName: "Flint and Steel",
+  },
+  {
+    cookieKey: "take-final-meal",
+    displayName: "Pollastro Arrosto",
+  },
+];
+
+const noneClickableItems = [
+  {
+    cookieKey: "orange-juice",
+    displayName: "Half cup of Orange Juice",
+  },
+  {
+    cookieKey: "chicken",
+    displayName: "2 pounds of Chicken",
+  },
+  {
+    cookieKey: "blossom-water",
+    displayName: "1 tsp Orange Blossom Water",
+  },
+  {
+    cookieKey: "sugar",
+    displayName: "1 tsp Sugar",
+  },
+  {
+    cookieKey: "cinnamon",
+    displayName: "1 tsp Cinnamon",
+  },
+  {
+    cookieKey: "goblet-water",
+    displayName: "Cup of Verjuice",
+  },
+];
