@@ -6,18 +6,18 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Home" });
 });
 
-const escapeRoomURl = "escape-room/kitchen";
+const escapeRoomEJS = "room";
 router.get("/kitchen", function (req, res, next) {
-  res.render(escapeRoomURl, { title: "Kitchen", js: "kitchen" });
+  res.render(escapeRoomEJS, { title: "Kitchen", js: "kitchen" });
 });
 router.get("/tavern", function (req, res, next) {
-  res.render(escapeRoomURl, { title: "Tavern", js: "tavern" });
+  res.render(escapeRoomEJS, { title: "Tavern", js: "tavern" });
 });
 router.get("/link", function (req, res, next) {
-  res.render(escapeRoomURl, { title: "Link", js: "link" });
+  res.render(escapeRoomEJS, { title: "Link", js: "link" });
 });
 router.get("/library", function (req, res, next) {
-  res.render(escapeRoomURl, { title: "Library", js: "library" });
+  res.render(escapeRoomEJS, { title: "Library", js: "library" });
 });
 
 module.exports = router;
