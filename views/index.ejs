@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+    <%- include('./imports') %>
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+  </head>
+  <body>
+    Room Codess<input type="text" id="form-room-code" /><br />
+    Player Name<input type="text" id="form-player-name" /><br />
+
+    Key<input type="text" id="form-key" /><br />
+    Key Value<input type="text" id="form-key-value" /><br />
+
+    <button onclick="createRoom()">Create Room</button>
+    <button onclick="handleJoinRoom()">Join Room</button>
+  </body>
+</html>
