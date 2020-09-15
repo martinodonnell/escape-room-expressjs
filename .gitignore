@@ -1,1 +1,2 @@
-public/javascripts/firebase.js
+public/javascripts/firebase/firebaseService.js
+node_modules/

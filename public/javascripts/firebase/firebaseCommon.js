@@ -1,14 +1,4 @@
-const getRoomCookie = () => {
-  return getCookie("roomID");
-};
-
-const getRoomCookieReference = (roomID) => {
-  return getRoomReference(roomID).child("cookies");
-};
-
-const setRoomCookie = (roomID) => {
-  setCookieDB("roomID", roomID);
-};
+var firebase = require("./firebaseService").firebase;
 
 const getRoomReference = (roomID) => {
   return firebase.database().ref().child(`room@${roomID}`);
@@ -16,6 +6,10 @@ const getRoomReference = (roomID) => {
 
 const getAvailableRoomsReference = () => {
   return firebase.database().ref("availableRooms");
+};
+
+const getRoomCookieReference = (roomID) => {
+  return getRoomReference(roomID).child("cookies");
 };
 
 const checkIfRoomExists = async (roomID) => {
@@ -32,3 +26,8 @@ const checkIfRoomExists = async (roomID) => {
       return false;
     });
 };
+
+exports.getRoomCookieReference = getRoomCookieReference;
+exports.getRoomReference = getRoomReference;
+exports.getAvailableRoomsReference = getAvailableRoomsReference;
+exports.checkIfRoomExists = checkIfRoomExists;
