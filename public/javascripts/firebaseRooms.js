@@ -1,11 +1,11 @@
 const observeRoomCookies = (roomID) => {
   getRoomCookieReference(roomID).on("value", function (snapshot) {
     var data = snapshot.val();
-
-    Object.keys(data).forEach((key) => {
-      setCookie(data[key].key, data[key].displayName);
-    });
-    return snapshot;
+    if (data !== null) {
+      Object.keys(data).forEach((key) => {
+        setCookie(data[key].key, data[key].displayName);
+      });
+    }
   });
 };
 
