@@ -19,6 +19,12 @@ router.post("/room/:roomID/join", async (req, res) => {
   return res.send(jsonReturn);
 });
 
+router.get("/room/:roomID/exists", async (req, res) => {
+  const roomID = req.params.roomID;
+  const jsonReturn = await firebaseService.checkIfRoomExists(roomID);
+  return res.send(jsonReturn);
+});
+
 router.put("/room/:roomID/cookie", async (req, res) => {
   const roomID = req.params.roomID;
   const key = req.body.key;

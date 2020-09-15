@@ -5,7 +5,8 @@ const validateRoom = () => {
     if (hasAccessToRoom) {
       var roomID = hasValidRoomID();
       if (roomID) {
-        observeRoomCookies(roomID);
+        console.log("ready to observe cookies");
+        // observeRoomCookies(roomID);
       }
     }
   }
@@ -48,10 +49,10 @@ const userHasAccessToRoom = () => {
   return true;
 };
 
-const hasValidRoomID = () => {
+const hasValidRoomID = async () => {
   var roomID = getCookie("roomID");
   if (roomID) {
-    if (checkIfRoomExists(roomID)) {
+    if (await checkIfRoomExists(roomID)) {
       return roomID;
     }
   }
