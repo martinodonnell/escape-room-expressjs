@@ -1,4 +1,4 @@
-var firebase = require("./firebaseService").firebase;
+var firebase = require("./setup").firebase;
 
 const getRoomReference = (roomID) => {
   return firebase.database().ref().child(`room@${roomID}`);
@@ -13,7 +13,6 @@ const getRoomCookieReference = (roomID) => {
 };
 
 const checkIfRoomExists = async (roomID) => {
-  console.log("Check Room", roomID);
   return getAvailableRoomsReference()
     .once("value")
     .then(function (snapshot) {
