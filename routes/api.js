@@ -5,7 +5,7 @@ var firebaseService = require("../public/javascripts/firebase/firebaseService");
 router.post("/room/create", async (req, res) => {
   const roomID = await firebaseService.createNewRoom();
 
-  return res.send({ roomID: roomID });
+  res.send({ roomID: roomID });
 });
 
 router.post("/room/:roomID/join", async (req, res) => {
@@ -16,13 +16,13 @@ router.post("/room/:roomID/join", async (req, res) => {
     roomID,
     playerName
   );
-  return res.send(jsonReturn);
+  res.send(jsonReturn);
 });
 
 router.get("/room/:roomID/exists", async (req, res) => {
   const roomID = req.params.roomID;
   const jsonReturn = await firebaseService.checkIfRoomExists(roomID);
-  return res.send(jsonReturn);
+  res.send(jsonReturn);
 });
 
 router.post("/room/:roomID/cookie", async (req, res) => {
@@ -30,8 +30,18 @@ router.post("/room/:roomID/cookie", async (req, res) => {
   const key = req.body.key;
   const value = req.body.value;
 
-  firebaseService.saveCookieInDatabase(roomID, key, value);
-  return { status: "200" };
+  await firebaseService.saveCookieInDatabase(roomID, key, value);
+  res.send({ status: "200" });
+});
+
+router.get("/room/:roomID/cookie", async (req, res) => {
+  const roomID = "123";
+  const response = await firebaseService
+    .observeRoomCookies(roomID)
+    .then((data) => {
+      return data.val();
+    });
+  res.send(response);
 });
 
 module.exports = router;
