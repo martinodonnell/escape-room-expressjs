@@ -25,12 +25,13 @@ router.get("/room/:roomID/exists", async (req, res) => {
   return res.send(jsonReturn);
 });
 
-router.put("/room/:roomID/cookie", async (req, res) => {
+router.post("/room/:roomID/cookie", async (req, res) => {
   const roomID = req.params.roomID;
   const key = req.body.key;
   const value = req.body.value;
 
-  firebaseRooms.saveCookieInDatabase(roomID, key, value);
+  firebaseService.saveCookieInDatabase(roomID, key, value);
+  return { status: "200" };
 });
 
 module.exports = router;

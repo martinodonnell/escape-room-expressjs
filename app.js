@@ -30,11 +30,11 @@ app.use(
 app.use("/uevent", express.static(__dirname + "/node_modules/uevent"));
 app.use("/nosleep.js", express.static(__dirname + "/node_modules/nosleep.js"));
 app.use("/js-cookie", express.static(__dirname + "/node_modules/js-cookie"));
-
 app.use(
   "/photo-sphere-viewer",
   express.static(__dirname + "/node_modules/photo-sphere-viewer")
 );
+app.use("/socket.io", express.static(__dirname + "/node_modules/socket.io"));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

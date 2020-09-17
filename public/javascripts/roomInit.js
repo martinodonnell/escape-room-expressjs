@@ -6,7 +6,7 @@ const validateRoom = () => {
       var roomID = hasValidRoomID();
       if (roomID) {
         console.log("ready to observe cookies");
-        // observeRoomCookies(roomID);
+        //observe rooms once to get all cookies
       }
     }
   }

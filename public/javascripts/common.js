@@ -2,9 +2,10 @@ function setCookie(key, value) {
   localStorage["setItem"](key, value);
 }
 
-function setCookieDB(key, value = new Date()) {
+function setCookieDB(key, value = true) {
   if (!getCookie(key)) {
-    saveCookieInDatabase(key, value);
+    const roomID = getCookie("roomID");
+    emitCookie(roomID, key, value);
   }
   setCookie(key, value);
 }
