@@ -59,6 +59,16 @@ const generatePopups = () => {
 
   return markers;
 };
+
+const updateMarker = (cookieKey, svgID, content) => {
+  if (getCookie(cookieKey) !== null) {
+    markersPlugin.updateMarker({
+      id: svgID,
+      content: content,
+    });
+  }
+}
+
 const generateEnterDigit = (item) => {
   const { cookieKey, stages } = item;
   const { stage, popup } = stages[0];
@@ -97,19 +107,13 @@ const viewer = new PhotoSphereViewer.Viewer({
 });
 
 const markersPlugin = viewer.getPlugin(PhotoSphereViewer.MarkersPlugin);
-
-const updateMarker = (cookieKey, svgID, content) => {
-  if (getCookie(cookieKey) !== null) {
-    markersPlugin.updateMarker({
-      id: svgID,
-      content: content,
-    });
-  }
-}
 markersPlugin.on("select-marker", (e, marker) => {
-  Object.keys(extremeMarker).forEach((key) => {
-    const { svgID, cookieKey, stages } = extremeMarker[key];
-    const updateContents = extremeMarker[key].stages[0].popup.nextStagePopup
-    updateMarker(cookieKey, svgID, updateContents)
+  Object.keys(popupItems).forEach((key) => {
+    const item = popupItems[key]
+    if (item.popupType === 'password') {
+      const { svgID, cookieKey } = item;
+      const updateContents = item.stages[0].popup.nextStagePopup
+      updateMarker(cookieKey, svgID, updateContents)
+    }
   })
 });
