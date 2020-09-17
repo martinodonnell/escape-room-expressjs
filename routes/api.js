@@ -35,7 +35,7 @@ router.post("/room/:roomID/cookie", async (req, res) => {
 });
 
 router.get("/room/:roomID/cookie", async (req, res) => {
-  const roomID = "123";
+  const roomID = req.params.roomID;
   const response = await firebaseService
     .observeRoomCookies(roomID)
     .then((data) => {

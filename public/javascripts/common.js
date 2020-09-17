@@ -28,34 +28,25 @@ const buildEquitItem = (cookieKey, displayName) => {
   return `<p><a onClick=\"selectItem(${cookieKey},${displayName})\" target=\"_blank\">${displayName}</a></p>`;
 };
 
-const generateViewItemsModelHtml = () => {
-  var modalContents = "";
-  viewItems.forEach((item) => {
-    if (getCookie(item.cookieKey) !== null) {
-      modalContents += buildItemLine(item.imageURL, item.displayName);
-    }
-  });
-  return modalContents;
+const generateViewItemsHTML = (item) => {
+  if (getCookie(item.cookieKey) !== null) {
+    return buildItemLine(item.imageURL, item.displayName);
+  }
+  return "";
 };
 
-const generateEquitableItems = () => {
-  var modalContents = "";
-  equipItems.forEach((item) => {
-    if (getCookie(item.cookieKey) !== null) {
-      modalContents += buildEquitItem(item.cookieKey, item.displayName);
-    }
-  });
-  return modalContents;
+const generateEquitableItemsHTML = (item) => {
+  if (getCookie(item.cookieKey) !== null) {
+    return buildEquitItem(item.cookieKey, item.displayName);
+  }
+  return "";
 };
 
-const generateNoneClickableItems = () => {
-  var modalContents = "";
-  equipItems.forEach((item) => {
-    if (getCookie(item.cookieKey) !== null) {
-      modalContents += `<p>${item.displayName}</p>`;
-    }
-  });
-  return modalContents;
+const generateNoneClickableItemsHTML = (item) => {
+  if (getCookie(item.cookieKey) !== null) {
+    return `<p>${item.displayName}</p>`;
+  }
+  return "";
 };
 
 function setSelectedItem() {
@@ -67,16 +58,30 @@ function setSelectedItem() {
 }
 
 function showItems() {
+  var itemContents = "";
+  var equitContents = "";
+  var noneClickableContent = "";
+
+  viewItems.forEach((item) => {
+    if (item.itemType === "view") {
+      itemContents += generateViewItemsHTML(item);
+    } else if (item.itemType === "equip") {
+      equitContents += generateEquitableItemsHTML(item);
+    } else if (item.itemType === "noneClickable") {
+      noneClickableContent += generateNoneClickableItemsHTML(item);
+    }
+  });
+
   var modalContents = "";
   modalContents += "<h3><b>Items you can view</b></h3>";
-  modalContents += generateViewItemsModelHtml();
+  modalContents += itemContents;
 
   modalContents += "<h3><b>Equipment </b></h3>";
   modalContents += "<p id='current-item'>Current Item: Empty</p>";
-  modalContents += generateEquitableItems();
+  modalContents += equitContents;
 
   modalContents += "<h3><b>Ingredients</b></h3>";
-  modalContents += generateNoneClickableItems();
+  modalContents += noneClickableContent;
 
   document["getElementById"]("items")["innerHTML"] = modalContents;
 
@@ -108,120 +113,3 @@ function moveLibrary() {
 function navRoute(url = "/") {
   window.location.href = url;
 }
-
-const viewItems = [
-  {
-    cookieKey: "kitchenNote",
-    imageURL: "kitchen/kitchen-note.png",
-    displayName: "Kitchen Note",
-  },
-  {
-    cookieKey: "sugar-sheet",
-    imageURL: "kitchen/an-start.png",
-    displayName: "Sugar Paper",
-  },
-  {
-    cookieKey: "tea-sheet",
-    imageURL: "kitchen/an-the.png",
-    displayName: "Tea Paper",
-  },
-  {
-    cookieKey: "coffee-sheet",
-    imageURL: "kitchen/an-clock.png",
-    displayName: "Coffee Paper",
-  },
-  {
-    cookieKey: "cook-book",
-    imageURL: "kitchen/cook-book.pdf",
-    displayName: "Cook Book",
-  },
-  {
-    cookieKey: "kettle-note",
-    imageURL: "link/kettle-note.pdf",
-    displayName: "Kettle Notes",
-  },
-  {
-    cookieKey: "riddle-book",
-    imageURL: "link/riddle-book.pdf",
-    displayName: "Riddle Book",
-  },
-  {
-    cookieKey: "martha-note",
-    imageURL: "tavern/martha-note.png",
-    displayName: "Martha Note",
-  },
-  {
-    cookieKey: "glass-note",
-    imageURL: "tavern/decipher.png",
-    displayName: "Note in bottle",
-  },
-  {
-    cookieKey: "loose-recipe",
-    imageURL: "library/missing-recipe.png",
-    displayName: "Loose Recipe",
-  },
-  {
-    cookieKey: "recipe-codes",
-    imageURL: "library/recipe-codes.png",
-    displayName: "Recipe Codes",
-  },
-  {
-    cookieKey: "globe",
-    imageURL: "tavern/decipher.png",
-    displayName: "Globe",
-  },
-];
-
-const equipItems = [
-  {
-    cookieKey: "spectacles",
-    displayName: "Spectacles",
-  },
-  {
-    cookieKey: "hammer",
-    displayName: "Hammer",
-  },
-  {
-    cookieKey: "library-key",
-    displayName: "Library Key",
-  },
-  {
-    cookieKey: "tavern-key",
-    displayName: "Tavern Key",
-  },
-  {
-    cookieKey: "flint",
-    displayName: "Flint and Steel",
-  },
-  {
-    cookieKey: "take-final-meal",
-    displayName: "Pollastro Arrosto",
-  },
-];
-
-const noneClickableItems = [
-  {
-    cookieKey: "orange-juice",
-    displayName: "Half cup of Orange Juice",
-  },
-  {
-    cookieKey: "chicken",
-    displayName: "2 pounds of Chicken",
-  },
-  {
-    cookieKey: "blossom-water",
-    displayName: "1 tsp Orange Blossom Water",
-  },
-  {
-    cookieKey: "sugar",
-    displayName: "1 tsp Sugar",
-  },
-  {
-    cookieKey: "cinnamon",
-    displayName: "1 tsp Cinnamon",
-  },
-  {
-    cookieKey: "goblet-water",
-    displayName: "Cup of Verjuice",
-  },
-];
