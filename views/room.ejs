@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%- title %></title>
-    <%- include('./imports') %>
-  </head>
-  <body>
-    <div id="viewer"></div>
-    <%- include('./modal') %>
 
-    <!-- config -->
-    <script src="javascripts/config/cookies.js"></script>
-    <script src="javascripts/config/<%= js  %>Config.js"></script>
+<head>
+  <title><%- title %></title>
+  <%- include('./imports') %>
+</head>
 
-    <script src="javascripts/<%= js  %>.js"></script>
-    <script src="javascripts/roomService.js"></script>
-    <script src="javascripts/socketService.js"></script>
-    <script src="javascripts/roomInit.js"></script>
+<body>
+  <div id="viewer"></div>
+  <%- include('./modal') %>
 
-    <script></script>
-  </body>
+  <!-- config -->
+  <script src="javascripts/config/cookies.js"></script>
+  <script src="javascripts/config/<%= js  %>Config.js"></script>
+
+  <!-- <script src="javascripts/<%= js  %>.js"></script> -->
+  <script src="javascripts/kitchen.js"></script>
+  <script src="javascripts/roomService.js"></script>
+  <script src="javascripts/socketService.js"></script>
+  <script src="javascripts/roomInit.js"></script>
+
+  <script></script>
+</body>
+
 </html>

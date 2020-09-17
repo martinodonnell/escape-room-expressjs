@@ -17,8 +17,8 @@ const navbar = [
 
 const popupItems = {
     pictureManItem: {
-        popupType: 'simple',
-        itemType: "description",
+        popupType: 'description',
+        itemType: "view",
         svgID: "picture-man-svg",
         polylineRad: [
             [4.737700160703204, 0.0172236271512769],
@@ -39,8 +39,8 @@ const popupItems = {
         },
     },
     animalItem: {
-        popupType: 'simple',
-        itemType: "description",
+        popupType: 'description',
+        itemType: "view",
         svgID: "picture-animal-svg",
         polylineRad: [
             [4.945208981792439, 0.08421043176523257],
@@ -55,8 +55,8 @@ const popupItems = {
         },
     },
     cornItem: {
-        popupType: 'simple',
-        itemType: "description",
+        popupType: 'description',
+        itemType: "view",
         svgID: "corn-svg",
         polylineRad: [
             [1.395281091377321, 0.5425129861945572],
@@ -74,8 +74,8 @@ const popupItems = {
         },
     },
     blueClothItem: {
-        popupType: 'simple',
-        itemType: "description",
+        popupType: 'description',
+        itemType: "view",
         svgID: "blue-cloth-svg",
         polylineRad: [
             [2.48275310651872, 0.029024325914693172],
@@ -92,8 +92,8 @@ const popupItems = {
         },
     },
     tridentItem: {
-        popupType: 'simple',
-        itemType: "description",
+        popupType: 'description',
+        itemType: "view",
         svgID: "trident-svg",
         polylineRad: [
             [0.6313316057092863, 0.16630536381008088],
@@ -157,24 +157,23 @@ const popupItems = {
             textAfter: "You have all the sugar you need",
         },
     },
-    sugarItem: {
+    cinnamonItem: {
         popupType: 'equitment',
         itemType: "view",
         svgID: "cinnamon-svg",
         cookieKey: "cinnamon",
         polylineRad: [
-            [3.1030840354131572, -0.13261255717642384],
-            [3.1031840354131575, -0.13251255717642385],
-            [3.169265115879142, -0.1334451323756407],
-            [3.1734656099557106, -0.19169145767268225],
-            [3.10805472094562, -0.198464625961019],
-            [3.0999233287435897, -0.13021076708837676],
+            [3.541705280476011, -0.047797976861321256],
+            [3.5418052804760114, -0.047697976861321253],
+            [3.6088032103665477, -0.04768471883877923],
+            [3.609035855567734, -0.1060961056784564],
+            [3.538033355094823, -0.105130502868781],
         ],
         popupDetails: {
             title: "Cinnamon Sticks",
             description: "Maybe there are some pancakes about",
             cookieKey: "cinnamon",
-            imageURL: "link/cinnamon.jpg",
+            imageURL: "link/cinnamon.jpeg",
             textBefore: "Take a couple sticks",
             textAfter: "You took a handful of cinnamon sticks",
         },
@@ -209,4 +208,34 @@ const popupItems = {
             },
         ],
     },
+    test: {
+        popupType: 'password',
+        svgID: "cauldron-svg",
+        cookieKey: "cauldronCode",
+        polylineRad: [
+            [4.237020102893588, -0.1399985350091233],
+            [4.237120102893588, -0.1398985350091233],
+            [4.32597119576795, -0.13986388125739246],
+            [4.329332822424835, -0.19508971957526366],
+            [4.24758281776756, -0.20142277528431451],
+            [4.235837940393109, -0.13641327820447935],
+        ],
+        stages: [
+            {
+                stage: 1,
+                popup: {
+                    title: "Cauldron",
+                    description: "You find a lock behind the cauldron",
+                    answer: "false",
+                    stage: 1,
+                    placeholder: "Enter Code",
+                    methodName: "checkPassword",
+                    nextStagePopup: '<h1>Cauldron</h1><p>There is a key in the safe</p><div id=cauldron-key-a><a href=# onClick=takeKey();>Take key</a></div>'
+
+                },
+            },
+        ],
+    },
+
+
 };
