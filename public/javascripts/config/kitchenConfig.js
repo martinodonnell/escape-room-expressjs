@@ -153,7 +153,7 @@ const popupItems = {
           stage: 1,
           placeholder: "Enter Code",
           methodName: "checkPassword",
-          nextStagePopup: '<b>Correct password, you can not move through time</b><button class=`button` onclick=`moveTavern()`>Tavern</button><button class=`button` onclick=`moveLink()`>Link</button><button class=`button` onclick=`moveLibrary()`>Library</button>'
+          nextStagePopup: '<b>Correct password, you can not move through time</b><button class=button onclick=moveTavern()>Tavern</button><button class=button onclick=moveLink()>Link</button><button class=button onclick=moveLibrary()>Library</button>'
         },
       },
     ],
