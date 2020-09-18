@@ -199,8 +199,8 @@ const popupItems = {
             }
         ],
     },
-    keypadItem: {
-        popupType: 'password',
+    kettleItem: {
+        popupType: 'staged',
         svgID: "kettle-svg",
         polylineRad: [
             [4.682752247332864, -0.037217410011668006],
@@ -213,7 +213,7 @@ const popupItems = {
             [4.6543470848019, -0.07716761061399069],
             [4.657492171938253, -0.05354173539178908],
         ],
-        stages: [
+        popupDetails: [
             {
                 stage: 0,
                 popupType: 'password',
@@ -222,7 +222,6 @@ const popupItems = {
                 description: "Enter the code to open the kettle",
                 answer: "A2B2M2A4V5",
                 placeholder: "Enter Code",
-                methodName: "checkPassword",
             },
             {
                 stage: 1,
@@ -230,8 +229,8 @@ const popupItems = {
                 title: "Opened kettle",
                 description: "You find a note in the kettle",
                 cookieKey: "kettle-note",
-                imageURL: "kettle-note.pdf",
-                popupURL: "kettle-note.pdf",
+                imageURL: "link/kettle-note.pdf",
+                popupURL: "link/kettle-note.pdf",
             },
         ],
     },
@@ -246,7 +245,7 @@ const popupItems = {
             [4.24758281776756, -0.20142277528431451],
             [4.235837940393109, -0.13641327820447935],
         ],
-        stages: [
+        popupDetails: [
             {
                 stage: 0,
                 cookieKey: "cauldronCode",
