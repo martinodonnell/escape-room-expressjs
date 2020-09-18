@@ -118,7 +118,7 @@ const popupItems = {
         svgID: "book-svg",
         itemType: "view",
         cookieKey: "riddle-book",
-        imageURL: "link/riddle-book.pdf",
+        imageURL: "link/riddleBook.pdf",
         displayName: "Coffee Paper",
         polylineRad: [
             [4.9008742213548935, -0.10003900095265594],
@@ -131,15 +131,14 @@ const popupItems = {
             title: "Book of riddles",
             description: "RIDDLES!!!",
             cookieKey: "riddle-book",
-            imageURL: "link/riddle-book.pdf",
-            popupURL: "link/riddle-book.pdf",
+            imageURL: "link/riddleBook.pdf",
+            popupURL: "link/riddleBook.pdf",
         },
     },
     sugarItem: {
-        popupType: 'equitment',
+        popupType: 'staged',
         itemType: "view",
         svgID: "sugar-svg",
-        cookieKey: "sugar",
         polylineRad: [
             [3.1030840354131572, -0.13261255717642384],
             [3.1031840354131575, -0.13251255717642385],
@@ -148,20 +147,31 @@ const popupItems = {
             [3.10805472094562, -0.198464625961019],
             [3.0999233287435897, -0.13021076708837676],
         ],
-        popupDetails: {
-            title: "Sugar",
-            description: "Sweet!!",
-            cookieKey: "sugar",
-            imageURL: "link/sugar.jpg",
-            textBefore: "Take some",
-            textAfter: "You have all the sugar you need",
-        },
+        popupDetails: [
+            {
+                stage: 0,
+                popupType: 'equitment',
+                title: "Sugar",
+                description: "Sweet!!",
+                cookieKey: "sugar",
+                imageURL: "link/sugar.jpg",
+                text: "Take some"
+            },
+            {
+                stage: 1,
+                popupType: 'pickedEquitment',
+                title: "Cinnamon Sticks",
+                description: "Maybe there are some pancakes about",
+                imageURL: "link/cinnamon.jpeg",
+                text: "You should leave the rest for the next person",
+            }
+        ]
+
     },
     cinnamonItem: {
-        popupType: 'equitment',
+        popupType: 'staged',
         itemType: "view",
         svgID: "cinnamon-svg",
-        cookieKey: "cinnamon",
         polylineRad: [
             [3.541705280476011, -0.047797976861321256],
             [3.5418052804760114, -0.047697976861321253],
@@ -169,19 +179,29 @@ const popupItems = {
             [3.609035855567734, -0.1060961056784564],
             [3.538033355094823, -0.105130502868781],
         ],
-        popupDetails: {
-            title: "Cinnamon Sticks",
-            description: "Maybe there are some pancakes about",
-            cookieKey: "cinnamon",
-            imageURL: "link/cinnamon.jpeg",
-            textBefore: "Take a couple sticks",
-            textAfter: "You took a handful of cinnamon sticks",
-        },
+        popupDetails: [
+            {
+                stage: 0,
+                popupType: 'equitment',
+                title: "Cinnamon Sticks",
+                description: "Maybe there are some pancakes about",
+                cookieKey: "cinnamon",
+                imageURL: "link/cinnamon.jpeg",
+                text: "Take a couple sticks",
+            },
+            {
+                stage: 1,
+                popupType: 'pickedEquitment',
+                title: "Cinnamon Sticks",
+                description: "Maybe there are some pancakes about",
+                imageURL: "link/cinnamon.jpeg",
+                text: "You took a handful of cinnamon sticks",
+            }
+        ],
     },
     keypadItem: {
         popupType: 'password',
         svgID: "kettle-svg",
-        cookieKey: "kettleCode",
         polylineRad: [
             [4.682752247332864, -0.037217410011668006],
             [4.682852247332864, -0.037117410011668],
@@ -195,23 +215,29 @@ const popupItems = {
         ],
         stages: [
             {
+                stage: 0,
+                popupType: 'password',
+                cookieKey: "kettleCode",
+                title: "Kettle with locked lid",
+                description: "Enter the code to open the kettle",
+                answer: "A2B2M2A4V5",
+                placeholder: "Enter Code",
+                methodName: "checkPassword",
+            },
+            {
                 stage: 1,
-                popup: {
-                    title: "Kettle with locked lid",
-                    description: "Enter the code to open the kettle",
-                    answer: "A2B2M2A4V5",
-                    stage: 1,
-                    placeholder: "Enter Code",
-                    methodName: "checkPassword",
-                    nextStagePopup: '<h1>Note </h1><div id=glass-note-a><a href=# onClick=openKettleNote();><img src=images/link/scroll-parchment.png width=50%><p>Examine</a></p></div>'
-                },
+                popupType: 'simple',
+                title: "Opened kettle",
+                description: "You find a note in the kettle",
+                cookieKey: "kettle-note",
+                imageURL: "kettle-note.pdf",
+                popupURL: "kettle-note.pdf",
             },
         ],
     },
-    test: {
+    cauldronItem: {
         popupType: 'password',
         svgID: "cauldron-svg",
-        cookieKey: "cauldronCode",
         polylineRad: [
             [4.237020102893588, -0.1399985350091233],
             [4.237120102893588, -0.1398985350091233],
@@ -222,17 +248,14 @@ const popupItems = {
         ],
         stages: [
             {
-                stage: 1,
-                popup: {
-                    title: "Cauldron",
-                    description: "You find a lock behind the cauldron",
-                    answer: "false",
-                    stage: 1,
-                    placeholder: "Enter Code",
-                    methodName: "checkPassword",
-                    nextStagePopup: '<h1>Cauldron</h1><p>There is a key in the safe</p><div id=cauldron-key-a><a href=# onClick=takeKey();>Take key</a></div>'
-
-                },
+                stage: 0,
+                cookieKey: "cauldronCode",
+                title: "Cauldron",
+                description: "You find a lock behind the cauldron",
+                answer: "false",
+                placeholder: "Enter Code",
+                methodName: "checkPassword",
+                nextStagePopup: '<h1>Cauldron</h1><p>There is a key in the safe</p><div id=cauldron-key-a><a href=# onClick=takeKey();>Take key</a></div>'
             },
         ],
     },

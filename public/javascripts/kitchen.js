@@ -3,9 +3,9 @@ const openImage = (cookieKey, imageURL) => {
   window["open"](`images/${imageURL}`);
 };
 
-const pickupItem = (cookieKey, content) => {
+const pickupItem = (svgID, cookieKey, text) => {
   setCookieDB(cookieKey);
-  document["getElementById"](`${cookieKey}-a`)["innerHTML"] = content
+  document["getElementById"](`${svgID}-a`)["innerHTML"] = text
 };
 
 const generatePopups = () => {
@@ -13,15 +13,25 @@ const generatePopups = () => {
   Object.keys(popupItems).forEach((key) => {
     var item = popupItems[key];
     var itemContent
-    if (item.popupType === 'password') {
-      itemContent = generatePasswordPopup(item)
-    } else if (item.popupType === 'equitment') {
-      itemContent = generateEquitmentPopup(item["popupDetails"])
-    } else if (item.popupType === 'description') {
-      itemContent = generateDescriptionPopup(item["popupDetails"])
-    } else {
-      itemContent = generateSimpleImageClickable(item["popupDetails"])
+    if (item.popupType === 'staged') {
+
+      const { svgID, popupDetails } = item
+      const firstPopupDetails = popupDetails[0]
+      if (firstPopupDetails.popupType === 'equitment') {
+        itemContent = generateEquitmentPopup(svgID, popupDetails, 0)
+      } else {
+        itemContent = generateSimpleImageClickable(item["popupDetails"])
+      }
     }
+    // if (item.popupType === 'password') {
+    //   itemContent = generatePasswordPopup(item.stages[0])
+    // } else if (item.popupType === 'equitment') {
+    //   itemContent = generateEquitmentPopup(item.svgID, item["popupDetails"])
+    // } else if (item.popupType === 'description') {
+    //   itemContent = generateDescriptionPopup(item.svgID, item["popupDetails"])
+    // } else {
+    //   itemContent = generateSimpleImageClickable(item["popupDetails"])
+    // }
     markers.push({
       id: item.svgID,
       polylineRad: item.polylineRad,
@@ -37,27 +47,24 @@ const generatePopups = () => {
   return markers;
 };
 
-const updateMarker = (cookieKey, svgID, content) => {
-  if (getCookie(cookieKey) !== null) {
-    markersPlugin.updateMarker({
-      id: svgID,
-      content: content,
-    });
-  }
+const updateMarker = (svgID, content) => {
+  markersPlugin.updateMarker({
+    id: svgID,
+    content: content,
+  });
+
 }
 
-const generatePasswordPopup = (item) => {
-  const { cookieKey, stages } = item;
-  const { stage, popup } = stages[0];
-  const {
-    title,
-    description,
-    answer,
-    placeholder,
-    methodName,
-    nextStagePopup,
-  } = popup;
-
+const generatePasswordPopup = ({
+  stage,
+  cookieKey,
+  title,
+  description,
+  answer,
+  placeholder,
+  methodName,
+  nextStagePopup,
+}) => {
   return `<div id=${cookieKey}>
             <h1>${title}</h1>
             <p>${description}</p>
@@ -68,27 +75,30 @@ const generatePasswordPopup = (item) => {
           </div>`;
 };
 
-const generateEquitmentPopup = ({ title, description, cookieKey, imageURL, textBefore, textAfter }) => {
+const generateEquitmentPopup = (svgID, popupDetails, currentStage) => {
+
+  const { stage, title, description, cookieKey, imageURL, text } = popupDetails[currentStage]
+  const afterText = popupDetails[currentStage + 1].text
   var html = "";
-  console.log(imageURL)
   html += ` <h1>${title}</h1>
             <h2>${description}</h2>
             <img src="images/${imageURL}" width="100%">
-            <div id="${cookieKey}-a">
-              <a href="#" onClick="pickupItem('${cookieKey}','${textAfter}');">${textBefore}</a>
+            <div id="${svgID}-a">
+              <a href="#" onClick="pickupItem('${svgID}', '${cookieKey}', '${afterText}');">${text}</a>
             </div>`
 
   return html;
 }
 
-const generatePickedUpEquitmentPopup = ({ title, description, cookieKey, imageURL, textAfter }) => {
+const generatePickedUpEquitmentPopup = (svgID, popupDetails) => {
+  const { title, description, cookieKey, imageURL, text } = popupDetails
+  console.log(popupDetails)
   var html = "";
-  console.log(imageURL)
   html += ` <h1>${title}</h1>
             <h2>${description}</h2>
             <img src="images/${imageURL}" width="100%">
-            <div id="${cookieKey}-a">
-              ${textAfter}
+            <div id="${svgID}-a">
+              ${text}
             </div>`
 
   return html;
@@ -146,18 +156,32 @@ const viewer = new PhotoSphereViewer.Viewer({
   ],
 });
 
+
 const markersPlugin = viewer.getPlugin(PhotoSphereViewer.MarkersPlugin);
 markersPlugin.on("select-marker", (e, marker) => {
   Object.keys(popupItems).forEach((key) => {
     const item = popupItems[key]
-    if (item.popupType === 'password') {
-      const { svgID, cookieKey } = item;
-      const updateContents = item.stages[0].popup.nextStagePopup
-      updateMarker(cookieKey, svgID, updateContents)
-    } else if (item.popupType === 'equitment') {
-      const { svgID, cookieKey } = item;
-      const updateContents = generatePickedUpEquitmentPopup(item.popupDetails)
-      updateMarker(cookieKey, svgID, updateContents)
+    if (item.popupType === 'staged') {
+      const { svgID } = item;
+      for (var popup of item.popupDetails) {
+        const { stage, cookieKey } = popup
+        if (cookieKey) {
+          if (getCookie(popup.cookieKey) !== null) {
+            const updateContents = generatePickedUpEquitmentPopup(svgID, item.popupDetails[stage + 1])
+            console.log(updateContents)
+            updateMarker(svgID, updateContents)
+          }
+        }
+      }
     }
+    // if (item.popupType === 'password') {
+    //   const { svgID, cookieKey } = item;
+    //   const updateContents = item.stages[0].nextStagePopup
+    //   updateMarker(cookieKey, svgID, updateContents)
+    // } else if (item.popupType === 'equitment') {
+    //   const { svgID, cookieKey } = item;
+    //   const updateContents = generatePickedUpEquitmentPopup(svgID, item.popupDetails)
+    //   updateMarker(cookieKey, svgID, updateContents)
+    // }
   })
 });

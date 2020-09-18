@@ -134,7 +134,6 @@ const popupItems = {
   keypadItem: {
     popupType: 'password',
     svgID: "keypad-svg",
-    cookieKey: "keypad",
     polylineRad: [
       [2.726763501813259, 0.08159094117953325],
       [2.726863501813259, 0.08169094117953325],
@@ -146,15 +145,13 @@ const popupItems = {
     stages: [
       {
         stage: 1,
-        popup: {
-          title: "Keypad",
-          description: "Enter the code to <b>start</b> time travel",
-          answer: "Start the clock",
-          stage: 1,
-          placeholder: "Enter Code",
-          methodName: "checkPassword",
-          nextStagePopup: '<b>Correct password, you can not move through time</b><button class=button onclick=moveTavern()>Tavern</button><button class=button onclick=moveLink()>Link</button><button class=button onclick=moveLibrary()>Library</button>'
-        },
+        cookieKey: "keypad",
+        title: "Keypad",
+        description: "Enter the code to <b>start</b> time travel",
+        answer: "Start the clock",
+        placeholder: "Enter Code",
+        methodName: "checkPassword",
+        nextStagePopup: '<b>Correct password, you can not move through time</b><button class=button onclick=moveTavern()>Tavern</button><button class=button onclick=moveLink()>Link</button><button class=button onclick=moveLibrary()>Library</button>'
       },
     ],
   },

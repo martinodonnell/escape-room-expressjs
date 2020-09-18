@@ -1,17 +1,17 @@
-// const pictureManPopup =
-//   "<p>You find some writing behind the picture</p><b>A2</b>";
-// const animalPopup = "<p>You find some writing behind the picture</p><b>B2</b>";
-// const cornPopup = "<p>You find some writing on the corn</p><b>M2</b>";
-// const blueClothPopup = "<p>You find some writing behind the cloth</p><b>A4</b>";
-// const tridentPopup = "<p>You find some writing on the trident</p><b>V5</b>";
+const pictureManPopup =
+  "<p>You find some writing behind the picture</p><b>A2</b>";
+const animalPopup = "<p>You find some writing behind the picture</p><b>B2</b>";
+const cornPopup = "<p>You find some writing on the corn</p><b>M2</b>";
+const blueClothPopup = "<p>You find some writing behind the cloth</p><b>A4</b>";
+const tridentPopup = "<p>You find some writing on the trident</p><b>V5</b>";
 
-// var riddleBookPopup =
-//   '<h1>Book of riddles</h1><a href="#" onClick="openRiddleBook();">Examinie</a>';
+var riddleBookPopup =
+  '<h1>Book of riddles</h1><a href="#" onClick="openRiddleBook();">Examinie</a>';
 
-// var kettlePopup =
-//   '<div id=kettleDiv><h1>Kettle with lock on bottom</h1><p>Enter the code to open the kettle</p><input type="text" id="kettlePass" placeholder="Enter Unlock Code"><div id="kettleFeedback" style="color:red;"></div><a href="#" onClick="enterKettleCode();">Enter</a></div>';
-// var kettleOpenPopup =
-//   '<h1>Note </h1><div id="glass-note-a"><a href="#" onClick="openKettleNote();"><img src="images/link/scroll-parchment.png" width="50%"><p>Examine</a></p></div>';
+var kettlePopup =
+  '<div id=kettleDiv><h1>Kettle with lock on bottom</h1><p>Enter the code to open the kettle</p><input type="text" id="kettlePass" placeholder="Enter Unlock Code"><div id="kettleFeedback" style="color:red;"></div><a href="#" onClick="enterKettleCode();">Enter</a></div>';
+var kettleOpenPopup =
+  '<h1>Note </h1><div id="glass-note-a"><a href="#" onClick="openKettleNote();"><img src="images/link/scroll-parchment.png" width="50%"><p>Examine</a></p></div>';
 
 var cauldronPopup =
   '<div id=cauldronDiv><h1>Cauldron</h1><p>You find a lock behind the cauldron</p><input type="text" id="cauldronpass" placeholder="Enter Unlock Code"><div id="cauldronFeedback" style="color:red;"></div><a href="#" onClick="enterCauldronCode();">Enter</a></div>';
@@ -20,15 +20,15 @@ var cauldronPopupKey =
 var cauldronPopupKeyTaken =
   '<h1>Cauldron</h1><div id="cauldron-key-a"><p>You put the key in your pocket</p></div>';
 
-// var sugarPopup =
-//   '<h1>Sugar</h1><img src="images/link/sugar.jpg" width="100%"><div id="sugar-a"><a href="#" onClick="takeSugar();">Take sugar</a></div>';
-// var sugarPopupTaken =
-//   '<h1>Sugar</h1><img src="images/link/sugar.jpg" width="100%"><div id="sugar-a"><p>You took some sugar</p></div>';
+var sugarPopup =
+  '<h1>Sugar</h1><img src="images/link/sugar.jpg" width="100%"><div id="sugar-a"><a href="#" onClick="takeSugar();">Take sugar</a></div>';
+var sugarPopupTaken =
+  '<h1>Sugar</h1><img src="images/link/sugar.jpg" width="100%"><div id="sugar-a"><p>You took some sugar</p></div>';
 
-// var cinnamonPopup =
-//   '<h1>Cinnamon Sticks</h1><img src="images/link/cinnamon.jpeg" width="100%"><div id="cinnamon-a"><a href="#" onClick="takeCinnamon();">Take some cinnamon sticks</a></div>';
-// var cinnamonPopupTaken =
-//   '<h1>Cinnamon Sticks</h1><img src="images/link/cinnamon.jpeg" width="100%"><div id="cinnamon-a"><p>You took a handful of cinnamon sticks</p></div>';
+var cinnamonPopup =
+  '<h1>Cinnamon Sticks</h1><img src="images/link/cinnamon.jpeg" width="100%"><div id="cinnamon-a"><a href="#" onClick="takeCinnamon();">Take some cinnamon sticks</a></div>';
+var cinnamonPopupTaken =
+  '<h1>Cinnamon Sticks</h1><img src="images/link/cinnamon.jpeg" width="100%"><div id="cinnamon-a"><p>You took a handful of cinnamon sticks</p></div>';
 
 var lightCauldronPopup =
   '<div id="cauldronLightDiv"><a href="#" onClick="lightCauldron();">Light cauldron with flint and steel</a></div>';
