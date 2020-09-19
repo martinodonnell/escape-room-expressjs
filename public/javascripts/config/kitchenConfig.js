@@ -17,12 +17,8 @@ const navbar = [
 
 const popupItems = {
   coffeeItem: {
-    popupType: popupTypes.SIMPLE,
-    svgID: "coffee-svg",
     itemType: "view",
-    cookieKey: "coffee-sheet",
-    imageURL: "kitchen/an-clock.png",
-    displayName: "Coffee Paper",
+    svgID: "coffee-svg",
     polylineRad: [
       [5.836808576486312, -0.23234285638042818],
       [5.836908576486311, -0.2322428563804282],
@@ -31,21 +27,21 @@ const popupItems = {
       [5.83879501997153, -0.34964392110965226],
       [5.8318590093529155, -0.2297270810209755],
     ],
-    popupDetails: {
-      title: "Coffee Tin",
-      description: "Inside the container you find a rolled up piece of paper",
-      cookieKey: "coffee-sheet",
-      imageURL: "kitchen/an-clock.png",
-      popupURL: "kitchen/an-clock.png",
-    },
+    popupDetails: [
+      {
+        stage: 0,
+        popupType: popupTypes.SIMPLE,
+        title: "Coffee Tin",
+        description: "Inside the container you find a rolled up piece of paper",
+        cookieKey: "coffee-sheet",
+        imageURL: "kitchen/an-clock.png",
+        popupURL: "kitchen/an-clock.png",
+      },
+    ]
   },
   teaItem: {
-    popupType: popupTypes.SIMPLE,
-    svgID: "tea-svg",
     itemType: "view",
-    cookieKey: "tea-sheet",
-    imageURL: "kitchen/an-the.png",
-    displayName: "Tea Paper",
+    svgID: "tea-svg",
     polylineRad: [
       [5.9626289993213675, -0.24409727365869482],
       [5.962728999321367, -0.24399727365869484],
@@ -54,21 +50,23 @@ const popupItems = {
       [5.9582377369527135, -0.3646515983773233],
       [5.958237736952713, -0.24157318219001755],
     ],
-    popupDetails: {
-      title: "Tea Tin",
-      description: "Inside the container you find a rolled up piece of paper",
-      cookieKey: "tea-sheet",
-      imageURL: "kitchen/an-the.png",
-      popupURL: "kitchen/an-the.png",
-    },
+    popupDetails: [
+      {
+        stage: 0,
+        popupType: popupTypes.SIMPLE,
+        title: "Tea Tin",
+        description: "Inside the container you find a rolled up piece of paper",
+        cookieKey: "tea-sheet",
+        imageURL: "kitchen/an-the.png",
+        popupURL: "kitchen/an-the.png",
+      }
+    ],
+
   },
   sugarItem: {
-    popupType: popupTypes.SIMPLE,
-    svgID: "sugar-svg",
     itemType: "view",
-    cookieKey: "sugar-sheet",
-    imageURL: "kitchen/an-start.png",
-    displayName: "Sugar Paper", polylineRad: [
+    svgID: "sugartin-svg",
+    polylineRad: [
       [6.083560624976641, -0.25093764347418834],
       [6.083660624976641, -0.25083764347418835],
       [6.1994927620989975, -0.254948075335689],
@@ -76,22 +74,22 @@ const popupItems = {
       [6.090681606520829, -0.37176848358107306],
       [6.076460102705467, -0.24831840200394217],
     ],
-    popupDetails: {
-      title: "Sugar Tin",
-      description: "Inside the container you find a rolled up piece of paper",
-      cookieKey: "sugar-sheet",
-      imageURL: "kitchen/an-start.png",
-      popupURL: "kitchen/an-start.png",
-    },
+    popupDetails: [
+      {
+        stage: 0,
+        popupType: popupTypes.SIMPLE,
+        title: "Sugar Tin",
+        description: "Inside the container you find a rolled up piece of paper",
+        cookieKey: "sugar-sheet",
+        imageURL: "kitchen/an-start.png",
+        popupURL: "kitchen/an-start.png",
+      }
+    ],
+
   },
   recipeBook: {
-    popupType: popupTypes.SIMPLE,
+    itemType: "view",
     svgID: "book-table-svg",
-    itemType: "view",
-    cookieKey: "cook-book",
-    imageURL: "kitchen/cook-book.pdf",
-    displayName: "Cook Book",
-    itemType: "view",
     polylineRad: [
       [5.349878653490439, -0.46839011253088225],
       [5.349978653490439, -0.46829011253088226],
@@ -100,21 +98,21 @@ const popupItems = {
       [5.476658757378827, -0.506342373745996],
       [5.343801006147461, -0.4674246852005908],
     ],
-    popupDetails: {
-      title: "Recipe Book",
-      description: "Book of recipes",
-      cookieKey: "cook-book",
-      imageURL: "kitchen/cookbook.pdf",
-      popupURL: "kitchen/cookbook.pdf",
-    },
+    popupDetails: [
+      {
+        stage: 0,
+        popupType: popupTypes.SIMPLE,
+        title: "Recipe Book",
+        description: "Book of recipes",
+        cookieKey: "cook-book",
+        imageURL: "kitchen/cookbook.pdf",
+        popupURL: "kitchen/cookbook.pdf",
+      }
+    ]
   },
   kitchenNote: {
-    popupType: popupTypes.SIMPLE,
-    svgID: "cubboard-1-item",
     itemType: "view",
-    cookieKey: "kitchenNote",
-    imageURL: "kitchen/kitchen-note.png",
-    displayName: "Kitchen Note",
+    svgID: "cubboard-1-item",
     polylineRad: [
       [0.3955333854101774, -0.6115991227306123],
       [0.3956333854101774, -0.6114991227306124],
@@ -123,16 +121,19 @@ const popupItems = {
       [0.38987968658942684, -0.8886630453562061],
       [0.38669349622774646, -0.6131349183007804],
     ],
-    popupDetails: {
-      title: "Cupboard",
-      description: "There's a scrunched up piece of paper",
-      cookieKey: "kitchen-note",
-      imageURL: "kitchen/kitchen-note.png",
-      popupURL: "kitchen/scrunched-paper-ball.jpg",
-    },
+    popupDetails: [
+      {
+        stage: 0,
+        popupType: popupTypes.SIMPLE,
+        title: "Cupboard",
+        description: "There's a scrunched up piece of paper",
+        cookieKey: "kitchen-note",
+        imageURL: "kitchen/kitchen-note.png",
+        popupURL: "kitchen/scrunched-paper-ball.jpg",
+      }
+    ]
   },
   keypadItem: {
-    popupType: popupTypes.PASSWORD,
     svgID: "keypad-svg",
     polylineRad: [
       [2.726763501813259, 0.08159094117953325],
@@ -142,16 +143,20 @@ const popupItems = {
       [2.7331988536460043, -0.014321491080146576],
       [2.723219543499507, 0.08525120501039374],
     ],
-    stages: [
+    popupDetails: [
       {
-        stage: 1,
+        stage: 0,
+        popupType: popupTypes.PASSWORD,
         cookieKey: "keypad",
         title: "Keypad",
         description: "Enter the code to <b>start</b> time travel",
         answer: "Start the clock",
         placeholder: "Enter Code",
-        methodName: "checkPassword",
         nextStagePopup: '<b>Correct password, you can not move through time</b><button class=button onclick=moveTavern()>Tavern</button><button class=button onclick=moveLink()>Link</button><button class=button onclick=moveLibrary()>Library</button>'
+      },
+      {
+        stage: 1,
+        popupType: popupTypes.NAVIGATION,
       },
     ],
   },

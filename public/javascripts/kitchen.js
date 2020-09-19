@@ -14,17 +14,22 @@ const generatePopups = () => {
     const item = popupItems[key]
     const { svgID, popupDetails } = item
     const stage = 0
-    const { popupType } = popupDetails[stage].popupType
+    console.log(item)
+    const { popupType } = popupDetails[stage]
     const itemContent = genereateContentView(popupType, svgID, popupDetails, stage)
 
     markers.push({
       id: item.svgID,
       polylineRad: item.polylineRad,
       svgStyle: {
-        fill: "rgba(200, 0, 0, 0)",
-        stroke: "rgba(200, 0, 50, 0)",
-        strokeWidth: "2px",
+        // fill: "rgba(200, 0, 0, 0)",
+        // stroke: "rgba(200, 0, 50, 0)",
+        // strokeWidth: "2px",
+        fill: 'rgba(200, 0, 0, 0.2)',
+        stroke: 'rgba(200, 0, 50, 0.8)',
+        strokeWidth: '2px'
       },
+
       content: itemContent
     });
   });
@@ -60,6 +65,22 @@ const generatePasswordPopup = (svgID, popupDetails, currentStage) => {
           </div>`;
 };
 
+const generateNavigationPopup = (svgID) => {
+  return `<div id=${svgID}
+            <b>Correct password, you can not move through time</b>
+            <button class=button onclick=moveTavern()>
+              Tavern
+            </button>
+            <button class=button onclick=moveLink()>
+              Link
+            </button>
+            <button class=button onclick=moveLibrary()>
+              Library
+            </button>
+          </div>`
+
+}
+
 const genereateContentView = (nextPopupType, svgID, popupDetails, stage) => {
   if (nextPopupType === popupTypes.EQUITMENT) {
     return generateEquitmentPopup(svgID, popupDetails, stage)
@@ -71,8 +92,11 @@ const genereateContentView = (nextPopupType, svgID, popupDetails, stage) => {
     return generateSimpleImageClickable(popupDetails[stage])
   } else if (nextPopupType === popupTypes.DESCRIPTION) {
     return generateDescriptionPopup(popupDetails[stage])
-  } else {
-    console.log("ERRRORORRRO", nextPopupType, stage, popupDetails)
+  } else if (nextPopupType === popupTypes.NAVIGATION) {
+    return generateNavigationPopup(popupDetails[stage])
+  }
+  else {
+    console.log(`error generating ${nextPopupType} at stage ${stage}`, popupDetails)
     return ''
   }
 }

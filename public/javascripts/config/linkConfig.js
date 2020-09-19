@@ -1,11 +1,3 @@
-const popupTypes = {
-    EQUITMENT: 'equitment',
-    EQUITMENTPICKEDUP: 'equitment-pickedup',
-    SIMPLE: 'simple',
-    DESCRIPTION: 'description',
-    PASSWORD: 'password'
-}
-
 const panorama = "images/link/link.png";
 const panoramaCaption = "Link";
 const navbar = [

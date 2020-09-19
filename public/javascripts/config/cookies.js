@@ -1,3 +1,12 @@
+const popupTypes = {
+  EQUITMENT: 'equitment',
+  EQUITMENTPICKEDUP: 'equitment-pickedup',
+  SIMPLE: 'simple',
+  DESCRIPTION: 'description',
+  PASSWORD: 'password',
+  NAVIGATION: 'navigation'
+}
+
 const viewItems = [
   {
     itemType: "view",
