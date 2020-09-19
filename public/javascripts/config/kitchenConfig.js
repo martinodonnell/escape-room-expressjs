@@ -17,7 +17,7 @@ const navbar = [
 
 const popupItems = {
   coffeeItem: {
-    popupType: 'simple',
+    popupType: popupTypes.SIMPLE,
     svgID: "coffee-svg",
     itemType: "view",
     cookieKey: "coffee-sheet",
@@ -40,7 +40,7 @@ const popupItems = {
     },
   },
   teaItem: {
-    popupType: 'simple',
+    popupType: popupTypes.SIMPLE,
     svgID: "tea-svg",
     itemType: "view",
     cookieKey: "tea-sheet",
@@ -63,7 +63,7 @@ const popupItems = {
     },
   },
   sugarItem: {
-    popupType: 'simple',
+    popupType: popupTypes.SIMPLE,
     svgID: "sugar-svg",
     itemType: "view",
     cookieKey: "sugar-sheet",
@@ -85,7 +85,7 @@ const popupItems = {
     },
   },
   recipeBook: {
-    popupType: 'simple',
+    popupType: popupTypes.SIMPLE,
     svgID: "book-table-svg",
     itemType: "view",
     cookieKey: "cook-book",
@@ -109,7 +109,7 @@ const popupItems = {
     },
   },
   kitchenNote: {
-    popupType: 'simple',
+    popupType: popupTypes.SIMPLE,
     svgID: "cubboard-1-item",
     itemType: "view",
     cookieKey: "kitchenNote",
@@ -132,7 +132,7 @@ const popupItems = {
     },
   },
   keypadItem: {
-    popupType: 'password',
+    popupType: popupTypes.PASSWORD,
     svgID: "keypad-svg",
     polylineRad: [
       [2.726763501813259, 0.08159094117953325],
