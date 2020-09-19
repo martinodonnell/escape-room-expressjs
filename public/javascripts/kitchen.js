@@ -17,8 +17,7 @@ const genereateContentView = (nextPopupType, svgID, popupDetails, stage, conditi
       return generateNavigationPopup(singlePopupDetail)
 
     case popupTypes.EQUITMENT:
-      const afterText = getAfterText(conditionalKey, popupDetails, stage);
-      return generateEquitmentPopup(svgID, singlePopupDetail, afterText)
+      return generateEquitmentPopup(svgID, singlePopupDetail, popupDetails, stage)
 
     case popupTypes.EQUITMENTPICKEDUP:
       return generatePickedUpEquitmentPopup(svgID, singlePopupDetail)
@@ -44,29 +43,6 @@ const updateMarker = (svgID, content) => {
     content: content,
   });
 }
-
-const generatePasswordPopup = (svgID, singlePopupDetails, popupDetails, currentStage) => {
-  const {
-    cookieKey,
-    title,
-    description,
-    answer,
-    placeholder,
-    image,
-  } = singlePopupDetails
-
-  const jsonPopupDetails = JSON.stringify(popupDetails).replace(/"/g, "'");
-  const imageContent = addImageIfTrue(image);
-  return `<div id=${svgID}-div>
-            <h1>${title}</h1>
-            <p>${description}</p>
-            ${imageContent}
-            <input type="text" id="${svgID}-input" placeholder="${placeholder}">
-            <div id="${svgID}feedback" style="color:red;">
-            </div>
-            <a href="#" onClick="checkPassword('${svgID}','${answer}','${cookieKey}',${jsonPopupDetails}, ${currentStage})">Enter</a>
-          </div>`;
-};
 
 const generateNavigationPopup = (svgID) => {
   return `<div id=${svgID}
@@ -102,25 +78,60 @@ const checkPassword = (svgID, answer, cookieKey, popupDetails, currentStage) => 
   }
 };
 
-const pickupItem = (svgID, cookieKey, text) => {
-  setCookieDB(cookieKey);
-  document["getElementById"](`${svgID}-a`)["innerHTML"] = text
+const generatePasswordPopup = (svgID, singlePopupDetails, popupDetails, currentStage) => {
+  const {
+    cookieKey,
+    title,
+    description,
+    answer,
+    placeholder,
+    image,
+  } = singlePopupDetails
+
+  const jsonPopupDetails = JSON.stringify(popupDetails).replace(/"/g, "'");
+  const imageContent = addImageIfTrue(image);
+  return `<div id=${svgID}-div>
+            <h1>${title}</h1>
+            <p>${description}</p>
+            ${imageContent}
+            <input type="text" id="${svgID}-input" placeholder="${placeholder}">
+            <div id="${svgID}feedback" style="color:red;">
+            </div>
+            <a href="#" onClick="checkPassword('${svgID}','${answer}','${cookieKey}',${jsonPopupDetails}, ${currentStage})">Enter</a>
+          </div>`;
 };
 
-const generateEquitmentPopup = (svgID, popupDetail, afterText) => {
-  const { title, description, cookieKey, imageURL, text } = popupDetail
+const pickupItem = (svgID, cookieKey, popupDetails, currentStage) => {
+  setCookieDB(cookieKey);
+
+  const nextStage = currentStage + 1
+  const nextPopupType = popupDetails[nextStage].popupType
+  const nextContentView = genereateContentView(nextPopupType, svgID, popupDetails, nextStage)
+  document["getElementById"](`${svgID}-div`)["innerHTML"] = nextContentView
+};
+
+const generateEquitmentPopup = (svgID, singlePopupDetails, popupDetails, currentStage) => {
+  const {
+    stage,
+    popupType,
+    title,
+    description,
+    cookieKey,
+    imageURL,
+    text
+  } = singlePopupDetails
+
+  const jsonPopupDetails = JSON.stringify(popupDetails).replace(/"/g, "'");
   const imageContent = addImageIfTrue(imageURL);
-  var html = "";
-  html += `<div id=${svgID}-div>
+
+  return `<div id=${svgID}-div>
              <h1>${title}</h1>
              <h2>${description}</h2>
               ${imageContent}
              <div id="${svgID}-a">
-               <a href="#" onClick="pickupItem('${svgID}', '${cookieKey}', '${afterText}');">${text}</a>
+               <a href="#" onClick="pickupItem('${svgID}','${cookieKey}',${jsonPopupDetails}, ${currentStage});">${text}</a>
              </div>
            </div>`
-
-  return html;
 }
 
 const generatePickedUpEquitmentPopup = (svgID, popupDetail) => {
@@ -184,15 +195,6 @@ const getSinglePopupDetails = (conditionalKey, popupDetails, stage) => {
   }
   else {
     return popupDetails[stage];
-  }
-}
-
-const getAfterText = (conditionalKey, popupDetails, stage) => {
-  if (conditionalKey) {
-    return popupDetails[stage][conditionalKey].afterText;
-  }
-  else {
-    return popupDetails[stage + 1].text;
   }
 }
 
@@ -281,7 +283,6 @@ function newFunction(popupType, popup, popupDetails, svgID) {
       const nextStage = stage + 1
       const nextPopupType = popupDetails[nextStage].popupType
       const nextPopupContent = genereateContentView(nextPopupType, svgID, popupDetails, nextStage)
-      console.log(nextPopupContent)
       updateMarker(svgID, nextPopupContent)
     }
   }
