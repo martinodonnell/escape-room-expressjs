@@ -152,7 +152,6 @@ const popupItems = {
         description: "Enter the code to <b>start</b> time travel",
         answer: "Start the clock",
         placeholder: "Enter Code",
-        nextStagePopup: '<b>Correct password, you can not move through time</b><button class=button onclick=moveTavern()>Tavern</button><button class=button onclick=moveLink()>Link</button><button class=button onclick=moveLibrary()>Library</button>'
       },
       {
         stage: 1,

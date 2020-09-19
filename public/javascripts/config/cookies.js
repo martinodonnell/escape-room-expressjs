@@ -4,7 +4,8 @@ const popupTypes = {
   SIMPLE: 'simple',
   DESCRIPTION: 'description',
   PASSWORD: 'password',
-  NAVIGATION: 'navigation'
+  NAVIGATION: 'navigation',
+  CONDITIONAL: 'conditional'
 }
 
 const viewItems = [
