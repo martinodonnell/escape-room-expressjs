@@ -21,7 +21,8 @@ const popupTypes = {
   PASSWORD: 'password',
   NAVIGATION: 'navigation',
   CONDITIONAL: 'conditional',
-  EMPTY: 'empty'
+  EMPTY: 'empty',
+  ADDINGREDIENTS: 'add-iingredients'
 }
 
 

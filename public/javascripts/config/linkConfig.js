@@ -224,6 +224,7 @@ const popupItems = {
                 description: "Enter the code to open the kettle",
                 answer: "A2B2M2A4V5",
                 placeholder: "Enter Code",
+                methodCall: 'checkPassword'
             },
             {
                 stage: 1,
@@ -255,6 +256,7 @@ const popupItems = {
                 description: "You find a lock behind the cauldron",
                 answer: "false",
                 placeholder: "Enter Code",
+                methodCall: 'checkPassword'
             },
             {
                 stage: 1,
@@ -300,11 +302,21 @@ const popupItems = {
             },
             {
                 stage: 5,
-                popupType: popupTypes.EQUITMENT,
-                title: "Cauldronsds",
+                popupType: popupTypes.ADDINGREDIENTS,
+                title: "Lit Cauldron",
                 description: "",
                 cookieKey: "makeFinalMeal",
-                text: "Add Ingredients to make Pollastro Arrosto"
+                text: "Add Ingredients to make Pollastro Arrosto",
+                itemsNeeded: [
+                    // 'blossom-water',
+                    // 'cinnamon',
+                    // 'orange-juice',
+                    // 'sugar',
+                    // 'chicken',
+                    // 'goblet-water',
+                    'flint'
+                ],
+                incorrectMessage: 'You do not have all the ingredients'
             },
             {
                 stage: 6,

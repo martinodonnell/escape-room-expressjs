@@ -1,19 +1,5 @@
 const panorama = "images/tavern/tavern.png";
 const panoramaCaption = "Tavern";
-const navbar = [
-    "zoom",
-    {
-        svgID: "my-button",
-        title: "Hello world",
-        className: "custom-button",
-        content: "Help",
-        onClick: function () {
-            showItems();
-        },
-    },
-    "caption",
-    "fullscreen",
-];
 
 const popupItems = {
     marthaItem: {
@@ -168,7 +154,9 @@ const popupItems = {
                     description: "You find a lock",
                     answer: "9048",
                     placeholder: "Enter Code",
-                    image: 'tavern/lock.png'
+                    image: 'tavern/lock.png',
+                    methodCall: 'checkPassword'
+
                 },
                 truePopup: {
                     stage: 0,
@@ -178,7 +166,8 @@ const popupItems = {
                     description: "You find a lock",
                     answer: "9048",
                     placeholder: "Enter Code",
-                    image: 'tavern/lock-code.png'
+                    image: 'tavern/lock-code.png',
+                    methodCall: 'checkPassword'
                 }
             },
             {

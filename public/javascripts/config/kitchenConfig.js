@@ -138,6 +138,7 @@ const popupItems = {
         description: "Enter the code to <b>start</b> time travel",
         answer: "Start the clock",
         placeholder: "Enter Code",
+        methodCall: 'checkPassword'
       },
       {
         stage: 1,

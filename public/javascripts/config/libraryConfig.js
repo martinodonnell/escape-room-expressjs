@@ -103,7 +103,8 @@ const popupItems = {
                 description: "There is a code and lock on one of these pages",
                 answer: "71046",
                 placeholder: "Enter Code",
-                image: 'library/recipe-codes.png'
+                image: 'library/recipe-codes.png',
+                methodCall: 'checkPassword'
             },
             {
                 stage: 1,
@@ -159,6 +160,7 @@ const popupItems = {
                 description: "",
                 answer: "1945",
                 placeholder: "Enter Code",
+                methodCall: 'checkPassword'
             },
             {
                 stage: 2,
