@@ -159,5 +159,5 @@ const popupItems = {
         popupType: popupTypes.NAVIGATION,
       },
     ],
-  },
+  }
 };
