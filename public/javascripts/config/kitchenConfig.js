@@ -1,19 +1,5 @@
 const panorama = "images/kitchen/kitchen.jpg";
 const panoramaCaption = "Kitchen";
-const navbar = [
-  "zoom",
-  {
-    id: "my-button",
-    title: "Hello world",
-    className: "custom-button",
-    content: "Help",
-    onClick: function () {
-      showItems();
-    },
-  },
-  "caption",
-  "fullscreen",
-];
 
 const popupItems = {
   coffeeItem: {

@@ -1,19 +1,5 @@
 const panorama = "images/link/link.png";
 const panoramaCaption = "Link";
-const navbar = [
-    "zoom",
-    {
-        id: "my-button",
-        title: "Hello world",
-        className: "custom-button",
-        content: "Help",
-        onClick: function () {
-            showItems();
-        },
-    },
-    "caption",
-    "fullscreen",
-];
 
 const popupItems = {
     pictureManItem: {
@@ -284,7 +270,6 @@ const popupItems = {
                 popupType: popupTypes.DESCRIPTION,
                 title: "Empty Safe",
                 description: "This is were I found the key",
-                text: "This is were I found the key",
             }
         ],
     },

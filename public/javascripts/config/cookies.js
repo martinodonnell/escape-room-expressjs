@@ -1,3 +1,18 @@
+const navbar = [
+  "zoom",
+  {
+    id: "my-button",
+    title: "Hello world",
+    className: "custom-button",
+    content: "Help",
+    onClick: function () {
+      showItems();
+    },
+  },
+  "caption",
+  "fullscreen",
+];
+
 const popupTypes = {
   EQUITMENT: 'equitment',
   EQUITMENTPICKEDUP: 'equitment-pickedup',
@@ -5,8 +20,10 @@ const popupTypes = {
   DESCRIPTION: 'description',
   PASSWORD: 'password',
   NAVIGATION: 'navigation',
-  CONDITIONAL: 'conditional'
+  CONDITIONAL: 'conditional',
+  EMPTY: 'empty'
 }
+
 
 const viewItems = [
   {

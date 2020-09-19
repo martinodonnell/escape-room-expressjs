@@ -10,7 +10,7 @@ var catPopupFlint =
 var bookRecipe =
   '<div id="recipeDiv"><h1>Book</h1><a href="#" onClick="examineRecipeCodes();"><img src="images/library/recipe-codes.png" width="50%"></a> <div id="recipe-inputs">      <input type="text" id="windowPass" placeholder="Windows"><input type="text" id="shadesPass" placeholder="Shades">      <input type="text" id="shieldsPass" placeholder="Shields">      <input type="text" id="countinantsPass" placeholder="Countinants"> <div id="codeFeedback" style="color:red;"></div>      <a href="#" onClick="enterRecipePass();">Enter</a></div>    </div></div>';
 var bookRecipeOpen =
-  '<h1>Loose Recipe in book</h1><img src="images/library/missing-recipe.png" width="100%"><div id="loose-recipe-a"><a href="#" onClick="takeloose-recipe();">Take recipe</a></div>';
+  '<h1>Loose Recipe in book</h1><img src="images/library/missing-recipe.png" width="100%"><div id="loose-recipe-a"><a href="#" onClick="takelooserecipe();">Take recipe</a></div>';
 var bookRecipeOpenTaken =
   '<h1>Loose Recipe in book</h1><img src="images/library/missing-recipe.png" width="100%"><div id="loose-recipe-a">You took the recipe</div>';
 
@@ -62,7 +62,7 @@ function enterRecipePass() {
   }
 }
 
-function takeloose-recipe() {
+function takelooserecipe() {
   setCookieDB("loose-recipe");
   document["getElementById"]("loose-recipe-a")["innerHTML"] =
     "<p>You took the loose page</p>";
