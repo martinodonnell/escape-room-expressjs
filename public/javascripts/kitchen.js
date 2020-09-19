@@ -3,11 +3,6 @@ const openImage = (cookieKey, imageURL) => {
   window["open"](`images/${imageURL}`);
 };
 
-const pickupItem = (svgID, cookieKey, text) => {
-  setCookieDB(cookieKey);
-  document["getElementById"](`${svgID}-a`)["innerHTML"] = text
-};
-
 const genereateContentView = (nextPopupType, svgID, popupDetails, stage, conditionalKey) => {
   const singlePopupDetail = getSinglePopupDetails(conditionalKey, popupDetails, stage);
 
@@ -107,6 +102,11 @@ const checkPassword = (svgID, answer, cookieKey, popupDetails, currentStage) => 
   }
 };
 
+const pickupItem = (svgID, cookieKey, text) => {
+  setCookieDB(cookieKey);
+  document["getElementById"](`${svgID}-a`)["innerHTML"] = text
+};
+
 const generateEquitmentPopup = (svgID, popupDetail, afterText) => {
   const { title, description, cookieKey, imageURL, text } = popupDetail
   const imageContent = addImageIfTrue(imageURL);
@@ -180,7 +180,6 @@ const addImageIfTrue = (image) => {
 
 const getSinglePopupDetails = (conditionalKey, popupDetails, stage) => {
   if (conditionalKey) {
-    console.log("Conditional");
     return popupDetails[stage][conditionalKey];
   }
   else {
@@ -213,7 +212,6 @@ const shouldTrueContionalContent = (isEquited, itemNeed) => {
     }
   }
   else {
-    console.log(getCookie(itemNeed))
     if (getCookie(itemNeed)) {
       return 'truePopup';
     }
@@ -279,11 +277,11 @@ function newFunction(popupType, popup, popupDetails, svgID) {
   }
   else if (popupType === popupTypes.EMPTY) {
     const { stage, itemNeeded } = popup;
-    console.log("Hello", itemNeeded, getCookie(itemNeeded), popup)
     if (getCookie(itemNeeded)) {
       const nextStage = stage + 1
       const nextPopupType = popupDetails[nextStage].popupType
       const nextPopupContent = genereateContentView(nextPopupType, svgID, popupDetails, nextStage)
+      console.log(nextPopupContent)
       updateMarker(svgID, nextPopupContent)
     }
   }
@@ -300,7 +298,6 @@ markersPlugin.on("select-marker", (e, marker) => {
 
     for (var popup of popupDetails) {
       const { popupType } = popup
-
       newFunction(popupType, popup, popupDetails, svgID);
     }
   })

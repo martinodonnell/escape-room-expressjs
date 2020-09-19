@@ -270,7 +270,48 @@ const popupItems = {
                 popupType: popupTypes.DESCRIPTION,
                 title: "Empty Safe",
                 description: "This is were I found the key",
-            }
+            },
+            {
+                stage: 3,
+                popupType: popupTypes.EMPTY,
+                itemNeeded: 'flint'
+            },
+            {
+                stage: 4,
+                popupType: popupTypes.CONDITIONAL,
+                itemNeed: 'flint',
+                isEquited: true,
+                falsePopup: {
+                    stage: 4,
+                    popupType: popupTypes.DESCRIPTION,
+                    title: "Cauldron",
+                    description: "If only you had something to lit a fire under the cauldron",
+
+                },
+                truePopup: {
+                    stage: 4,
+                    popupType: popupTypes.EQUITMENT,
+                    title: "Cauldron",
+                    description: "",
+                    cookieKey: "lightCauldron",
+                    text: "Start the fire with the flint and steel",
+                    afterText: 'gello'
+                }
+            },
+            {
+                stage: 5,
+                popupType: popupTypes.EQUITMENT,
+                title: "Cauldronsds",
+                description: "",
+                cookieKey: "makeFinalMeal",
+                text: "Add Ingredients to make Pollastro Arrosto"
+            },
+            {
+                stage: 6,
+                popupType: popupTypes.DESCRIPTION,
+                title: "Cauldrosdn",
+                description: "This looks good. Time to talk to the cat again",
+            },
         ],
     },
 
