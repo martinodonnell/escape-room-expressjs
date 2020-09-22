@@ -23,6 +23,28 @@ const popupItems = {
                 title: "El Gato",
                 description: "Meow y Hola. Chicos y Chicas have nothing to fear. El gato del futuro is right about here. Robots from the future have come to end all life…. finally, I can escape my wife. Nukes have already begun and boy oh boy I’m craving for a bun. I’m but a humble gato. Feed El Gato the Recipe of Time. But please remember no whiskey or wine",
                 image: "library/el-cato.png",
+            },
+            {
+                stage: 1,
+                popupType: popupTypes.EMPTY,
+                itemNeeded: 'makeFinalMeal'
+            },
+            {
+                stage: 2,
+                popupType: popupTypes.EQUITMENT,
+                title: "El Gato",
+                description: "Meow y Hola. Chicos y Chicas have nothing to fear. El gato del futuro is right about here. Robots from the future have come to end all life…. finally, I can escape my wife. Nukes have already begun and boy oh boy I’m craving for a bun. I’m but a humble gato. Feed El Gato the Recipe of Time. But please remember no whiskey or wine",
+                cookieKey: "catfed",
+                image: "library/el-cato.png",
+                text: "Feed the cat"
+            },
+            {
+                stage: 4,
+                popupType: popupTypes.EQUITMENTPICKEDUP,
+                title: "El Gato",
+                description: "Well done Adventurer you have saved all time and I have grown tried of the ability to rhyme.</p><p>The Code to the Time Machine: 1945</p><p>Vamos!</p>",
+                image: "library/el-cato.png",
+                text: "",
             }
         ]
     },
@@ -155,7 +177,7 @@ const popupItems = {
             {
                 stage: 1,
                 popupType: popupTypes.PASSWORD,
-                cookieKey: "kettleCode",
+                cookieKey: "finished",
                 title: "Time Machine",
                 description: "",
                 answer: "1945",
@@ -164,12 +186,7 @@ const popupItems = {
             },
             {
                 stage: 2,
-                popupType: popupTypes.SIMPLE,
-                title: "DONE",
-                description: "You find a note in the kettle",
-                cookieKey: "kettle-note",
-                imageURL: "link/kettle-note.pdf",
-                popupURL: "link/kettle-note.pdf",
+                popupType: popupTypes.FINISHED,
             },
         ]
     },

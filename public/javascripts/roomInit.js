@@ -36,7 +36,7 @@ const userHasAccessToRoom = () => {
   } else if (page === "link") {
     if (getCookie("keypad") === null) {
       moveKitchen();
-      alert("You don't have access to the tavern yet");
+      alert("You don't have access to the links rooms yet");
       return false;
     }
   } else if (page === "library") {

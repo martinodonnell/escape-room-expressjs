@@ -308,13 +308,12 @@ const popupItems = {
                 cookieKey: "makeFinalMeal",
                 text: "Add Ingredients to make Pollastro Arrosto",
                 itemsNeeded: [
-                    // 'blossom-water',
-                    // 'cinnamon',
-                    // 'orange-juice',
-                    // 'sugar',
-                    // 'chicken',
-                    // 'goblet-water',
-                    'flint'
+                    'blossom-water',
+                    'cinnamon',
+                    'orange-juice',
+                    'sugar',
+                    'chicken',
+                    'goblet-water',
                 ],
                 incorrectMessage: 'You do not have all the ingredients'
             },

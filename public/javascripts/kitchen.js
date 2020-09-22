@@ -24,7 +24,11 @@ const genereateContentView = (nextPopupType, svgID, popupDetails, stage, conditi
 
     case popupTypes.PASSWORD:
       return generatePasswordPopup(svgID, singlePopupDetail, popupDetails, stage)
+    case popupTypes.FINISHED:
+      alert("Done")
+      window.location.href = "/";
 
+      return
     case popupTypes.CONDITIONAL:
       const { itemNeed, isEquited } = singlePopupDetail
       conditionalKey = shouldTrueContionalContent(isEquited, itemNeed);

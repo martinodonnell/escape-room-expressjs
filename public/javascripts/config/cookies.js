@@ -22,7 +22,8 @@ const popupTypes = {
   NAVIGATION: 'navigation',
   CONDITIONAL: 'conditional',
   EMPTY: 'empty',
-  ADDINGREDIENTS: 'add-iingredients'
+  ADDINGREDIENTS: 'add-ingredients',
+  FINISHED: "finished"
 }
 
 
