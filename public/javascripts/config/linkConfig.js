@@ -288,7 +288,6 @@ const popupItems = {
                     popupType: popupTypes.DESCRIPTION,
                     title: "Cauldron",
                     description: "If only you had something to lit a fire under the cauldron",
-
                 },
                 truePopup: {
                     stage: 4,

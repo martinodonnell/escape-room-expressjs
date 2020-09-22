@@ -147,7 +147,6 @@ const generateAddIngredientsPopup = (svgID, singlePopupDetail, popupDetails, cur
 const checkAllCookiesPresent = (itemsNeeded) => {
   var isValid = true
   itemsNeeded.forEach((cookieKey) => {
-    console.log(cookieKey, getCookie(cookieKey), getCookie(cookieKey) == null)
     if (getCookie(cookieKey) == null) {
       isValid = false
     }
@@ -156,7 +155,6 @@ const checkAllCookiesPresent = (itemsNeeded) => {
 }
 const checkCookiesExist = (svgID, cookieKey, popupDetails, currentStage) => {
   const { itemsNeeded, incorrectMessage } = popupDetails[currentStage]
-  console.log("Worked", checkAllCookiesPresent(itemsNeeded))
   if (checkAllCookiesPresent(itemsNeeded)) {
     setCookieDB(`${cookieKey}`);
 
@@ -175,7 +173,6 @@ const checkCookiesExist = (svgID, cookieKey, popupDetails, currentStage) => {
 
 const pickupItem = (svgID, cookieKey, popupDetails, currentStage) => {
   setCookieDB(cookieKey);
-  console.log(svgID, cookieKey, popupDetails, currentStage)
   const nextStage = currentStage + 1
   const nextPopupType = popupDetails[nextStage].popupType
   const nextContentView = genereateContentView(nextPopupType, svgID, popupDetails, nextStage)
@@ -337,7 +334,6 @@ const viewer = new PhotoSphereViewer.Viewer({
 });
 
 function newFunction(popupType, popup, popupDetails, svgID) {
-  console.log(popupType)
   if (popupType === popupTypes.EQUITMENT || popupType === popupTypes.PASSWORD) {
     const { stage, cookieKey } = popup;
     updateMarkerWhenCookieExists(cookieKey, stage, popupDetails, svgID);

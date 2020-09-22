@@ -16,7 +16,13 @@ const navigateToWaitingRoom = () => {
   navRoute("/kitchen");
 };
 
+const clearCookies = () => {
+  localStorage.clear();
+}
+
 const createRoom = () => {
+  clearCookies()
+
   fetch(`${serverAddress}/api/room/create`, {
     method: "POST",
     headers: {
@@ -34,6 +40,7 @@ const createRoom = () => {
 };
 
 const handleJoinRoom = async () => {
+  clearCookies()
   const roomID = document.querySelector("#form-room-code").value;
   const playerName = document.querySelector("#form-player-name").value;
 
