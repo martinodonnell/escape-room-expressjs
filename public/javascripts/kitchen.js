@@ -267,15 +267,6 @@ const getSinglePopupDetails = (conditionalKey, popupDetails, stage) => {
   }
 }
 
-const updateMarkerWhenCookieExists = (cookieKey, stage, popupDetails, svgID) => {
-  if (getCookie(cookieKey)) {
-    const nextStage = stage + 1;
-    const nextPopupType = popupDetails[nextStage].popupType;
-    const updatePopupView = genereateContentView(nextPopupType, svgID, popupDetails, nextStage);
-    updateMarker(svgID, updatePopupView);
-  }
-}
-
 const shouldTrueContionalContent = (isEquited, itemNeed) => {
   if (isEquited) {
     if (getCookie('currentItem') === itemNeed) {
@@ -333,18 +324,35 @@ const viewer = new PhotoSphereViewer.Viewer({
   ],
 });
 
-function newFunction(popupType, popup, popupDetails, svgID) {
-  if (popupType === popupTypes.EQUITMENT || popupType === popupTypes.PASSWORD) {
+const updateMarkerWhenCookieExists = (cookieKey, stage, popupDetails, svgID) => {
+  if (getCookie(cookieKey)) {
+    const nextStage = stage + 1;
+    const nextPopupType = popupDetails[nextStage].popupType;
+    const updatePopupView = genereateContentView(nextPopupType, svgID, popupDetails, nextStage);
+    updateMarker(svgID, updatePopupView);
+  }
+}
+
+function updateMarkerContent(popupType, popup, popupDetails, svgID) {
+  if (popupType === popupTypes.EQUITMENT || popupType === popupTypes.PASSWORD || popupType == popupTypes.ADDINGREDIENTS) {
     const { stage, cookieKey } = popup;
     updateMarkerWhenCookieExists(cookieKey, stage, popupDetails, svgID);
   }
   else if (popupType === popupTypes.CONDITIONAL) {
+
     const { stage, itemNeed, isEquited } = popup;
     const conditionalKey = shouldTrueContionalContent(isEquited, itemNeed);
     const conditionalPopupType = popup[conditionalKey].popupType;
-    const updatePopupView = genereateContentView(conditionalPopupType, svgID, popupDetails, stage, conditionalKey);
+    const cookieKey = popup[conditionalKey].cookieKey;
 
-    updateMarker(svgID, updatePopupView);
+    if (getCookie(cookieKey)) {
+      updateMarkerWhenCookieExists(cookieKey, stage, popupDetails, svgID)
+    } else {
+      const updatePopupView = genereateContentView(conditionalPopupType, svgID, popupDetails, stage, conditionalKey);
+      updateMarker(svgID, updatePopupView);
+    }
+
+
   }
   else if (popupType === popupTypes.EMPTY) {
     const { stage, itemNeeded } = popup;
@@ -354,6 +362,8 @@ function newFunction(popupType, popup, popupDetails, svgID) {
       const nextPopupContent = genereateContentView(nextPopupType, svgID, popupDetails, nextStage)
       updateMarker(svgID, nextPopupContent)
     }
+  } else {
+    console.log("None", popupType)
   }
 }
 
@@ -368,7 +378,7 @@ markersPlugin.on("select-marker", (e, marker) => {
 
     for (var popup of popupDetails) {
       const { popupType } = popup
-      newFunction(popupType, popup, popupDetails, svgID);
+      updateMarkerContent(popupType, popup, popupDetails, svgID);
       if (popupType == popupTypes.EMPTY) {
         const { itemNeeded } = popup
         if (getCookie(itemNeeded) === null) {

@@ -287,6 +287,7 @@ const popupItems = {
                     stage: 4,
                     popupType: popupTypes.DESCRIPTION,
                     title: "Cauldron",
+                    cookieKey: "lightCauldron",
                     description: "If only you had something to lit a fire under the cauldron",
                 },
                 truePopup: {
