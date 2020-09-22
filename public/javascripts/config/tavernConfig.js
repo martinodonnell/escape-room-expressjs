@@ -24,7 +24,7 @@ const popupItems = {
                 stage: 0,
                 popupType: popupTypes.SIMPLE,
                 title: "Martha",
-                description: "She hads you a note",
+                description: "She hands you a note",
                 cookieKey: "coffee-sheet",
                 imageURL: "tavern/martha-note.png",
                 popupURL: "tavern/martha-note.png",
@@ -234,7 +234,7 @@ const popupItems = {
             {
                 stage: 0,
                 popupType: popupTypes.EQUITMENT,
-                title: "Checkicen",
+                title: "Chicken",
                 description: "Uncooked Chicken",
                 cookieKey: "chicken",
                 imageURL: "tavern/chicken.png",
@@ -243,7 +243,7 @@ const popupItems = {
             {
                 stage: 1,
                 popupType: popupTypes.EQUITMENTPICKEDUP,
-                title: "Checkicen",
+                title: "Chicken",
                 description: "Uncooked Chicken",
                 imageURL: "tavern/chicken.png",
                 text: "You aleady have some chicken",
@@ -285,7 +285,7 @@ const popupItems = {
                 stage: 0,
                 popupType: popupTypes.DESCRIPTION,
                 title: "Some animal",
-                description: "It stires back",
+                description: "It stares back",
             }
         ]
     },

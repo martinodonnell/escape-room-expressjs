@@ -52,7 +52,7 @@ const updateMarker = (svgID, content) => {
 
 const generateNavigationPopup = (svgID) => {
   return `<div id=${svgID}
-            <b>Correct password, you can not move through time</b>
+            <b>Correct password, you can now move through time</b>
             <button class=button onclick=moveTavern()>
               Tavern
             </button>
