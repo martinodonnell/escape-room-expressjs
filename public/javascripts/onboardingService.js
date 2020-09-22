@@ -1,5 +1,3 @@
-const serverAddress = "http://localhost:3000";
-
 const setRoomIDCookie = (value) => {
   setCookie("roomID", value);
 };
@@ -23,7 +21,7 @@ const clearCookies = () => {
 const createRoom = () => {
   clearCookies()
 
-  fetch(`${serverAddress}/api/room/create`, {
+  fetch(`/api/room/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -51,7 +49,7 @@ const handleJoinRoom = async () => {
 
   const body = { playerName: playerName };
 
-  fetch(`${serverAddress}/api/room/${roomID}/join`, {
+  fetch(`/api/room/${roomID}/join`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
