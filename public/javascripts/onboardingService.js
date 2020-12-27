@@ -10,21 +10,32 @@ const setPlayerNameCookie = (value) => {
   setCookie("playerName", value);
 };
 
+const setAuthTokenCookie = (value) => {
+  setCookie("authToken", value);
+};
+
+const getAuthTokenCookie = () =>  {
+  return getCookie("authToken")
+}
+
 const navigateToWaitingRoom = () => {
   navRoute("/kitchen");
 };
 
 const clearCookies = () => {
+  var authToken = getCookie('authToken');
   localStorage.clear();
+  setCookie("authToken", authToken);
 }
 
 const createRoom = () => {
   clearCookies()
-
+  
   fetch(`/api/room/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${getAuthTokenCookie()}`
     },
   }).then(async (res) => {
     const response = await res.json();
@@ -53,6 +64,7 @@ const handleJoinRoom = async () => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${getAuthTokenCookie()}`
     },
     body: JSON.stringify(body),
   }).then(async (res) => {
@@ -67,3 +79,24 @@ const handleJoinRoom = async () => {
     }
   });
 };
+
+
+fetch(`/api/auth/signin`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${getAuthTokenCookie()}`
+  },
+}).then(async (res) => {
+  const response = await res.json();
+  if (response["error"]) {
+    alert(response["error"]);
+  } else {
+    await setAuthTokenCookie(response['user']['stsTokenManager']['accessToken'])
+    console.log({"Authorization": `Bearer ${getAuthTokenCookie()}`})
+  }
+})
+.catch((e) => {
+  console.log(e)
+  alert("Need to be logged in, please refresh on the home screen")
+})

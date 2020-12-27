@@ -1,14 +1,17 @@
 var express = require("express");
 var router = express.Router();
 var firebaseService = require("../public/javascripts/firebase/firebaseService");
+var authService = require("../public/javascripts/firebase/firebase-auth");
 
-router.post("/room/create", async (req, res) => {
+router.post('/auth/signin', authService.signInAnonymously);
+
+router.post("/room/create", authService.checkIfAuthenticated, async (req, res) => {
   const roomID = await firebaseService.createNewRoom();
 
   res.send({ roomID: roomID });
 });
 
-router.post("/room/:roomID/join", async (req, res) => {
+router.post("/room/:roomID/join", authService.checkIfAuthenticated, async (req, res) => {
   const roomID = req.params.roomID;
   const playerName = req.body.playerName;
 
@@ -19,7 +22,7 @@ router.post("/room/:roomID/join", async (req, res) => {
   res.send(jsonReturn);
 });
 
-router.get("/room/:roomID/exists", async (req, res) => {
+router.get("/room/:roomID/exists", authService.checkIfAuthenticated, async (req, res) => {
   const roomID = req.params.roomID;
   const jsonReturn = await firebaseService.checkIfRoomExists(roomID);
   res.send(jsonReturn);
@@ -34,7 +37,7 @@ router.post("/room/:roomID/cookie", async (req, res) => {
   res.send({ status: "200" });
 });
 
-router.get("/room/:roomID/cookie", async (req, res) => {
+router.get("/room/:roomID/cookie", authService.checkIfAuthenticated, async (req, res) => {
   const roomID = req.params.roomID;
   const response = await firebaseService
     .observeRoomCookies(roomID)
