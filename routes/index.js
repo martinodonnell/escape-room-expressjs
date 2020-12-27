@@ -6,6 +6,10 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Home" });
 });
 
+router.get("/complete", function (req, res, next) {
+  res.render("complete", { title: "Completed" });
+});
+
 const routes = [
   { url: "kitchen", title: "Kitchen", js: "kitchen" },
   { url: "tavern", title: "Tavern", js: "tavern" },
