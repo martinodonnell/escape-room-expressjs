@@ -54,7 +54,7 @@ const handleJoinRoom = async () => {
   const playerName = document.querySelector("#form-player-name").value;
 
   if (roomID.trim() == "" || playerName.trim() == "") {
-    alert("form not completely filled");
+    alert("Please fill out both fields");
     return;
   }
 
