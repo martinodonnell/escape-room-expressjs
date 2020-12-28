@@ -28,6 +28,11 @@ const clearCookies = () => {
   setCookie("authToken", authToken);
 }
 
+const navHomeWithNoCookies = () => {
+  localStorage.clear();
+  navRoute("/");
+}
+
 const createRoom = () => {
   clearCookies()
   
