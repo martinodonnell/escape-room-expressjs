@@ -62,4 +62,4 @@ const hasValidRoomID = async () => {
   return false;
 };
 
-// validateRoom();
+validateRoom();

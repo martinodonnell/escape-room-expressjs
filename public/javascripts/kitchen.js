@@ -26,7 +26,7 @@ const genereateContentView = (nextPopupType, svgID, popupDetails, stage, conditi
       return generatePasswordPopup(svgID, singlePopupDetail, popupDetails, stage)
     case popupTypes.FINISHED:
       alert("Done")
-      window.location.href = "/";
+      window.location.href = "/complete";
 
       return
     case popupTypes.CONDITIONAL:
@@ -355,7 +355,6 @@ function updateMarkerContent(popupType, popup, popupDetails, svgID) {
       const updatePopupView = genereateContentView(conditionalPopupType, svgID, popupDetails, stage, conditionalKey);
       updateMarker(svgID, updatePopupView);
     }
-
 
   }
   else if (popupType === popupTypes.EMPTY) {

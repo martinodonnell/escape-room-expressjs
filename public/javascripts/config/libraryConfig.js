@@ -172,7 +172,7 @@ const popupItems = {
             {
                 stage: 0,
                 popupType: popupTypes.EMPTY,
-                itemNeeded: 'catFed'
+                itemNeeded: 'catfed'
             },
             {
                 stage: 1,
