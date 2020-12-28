@@ -25,7 +25,7 @@ const genereateContentView = (nextPopupType, svgID, popupDetails, stage, conditi
     case popupTypes.PASSWORD:
       return generatePasswordPopup(svgID, singlePopupDetail, popupDetails, stage)
     case popupTypes.FINISHED:
-      alert("Done")
+      localStorage.clear();
       window.location.href = "/complete";
 
       return
