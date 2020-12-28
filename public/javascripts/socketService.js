@@ -1,6 +1,8 @@
 var socket = io.connect();
 
-socket.on("new cookie", function (msg) {
+const socketEvent = `newCookie@${getCookie('roomID')}`
+
+socket.on(socketEvent, function (msg) {
   const { key, value } = JSON.parse(msg);
   console.log(key, value);
   setCookie(key, value);
@@ -8,7 +10,7 @@ socket.on("new cookie", function (msg) {
 
 const emitCookie = (roomID, key, value) => {
   const jsonCookieString = JSON.stringify({ key: key, value: value });
-  socket.emit("new cookie", jsonCookieString);
+  socket.emit(socketEvent, jsonCookieString);
  
   fetch(`/api/room/${roomID}/cookie`, {
     method: "POST",
