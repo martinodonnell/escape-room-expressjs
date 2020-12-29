@@ -5,7 +5,7 @@ const socketEvent = `new cookie`
 
 socket.on(`${socketEvent}@${socketRoomID}`, function (msg) {
   const { key, value } = JSON.parse(msg);
-  console.log(key, value);
+  console.log("New cookie to add", key, value);
   setCookie(key, value);
 });
 

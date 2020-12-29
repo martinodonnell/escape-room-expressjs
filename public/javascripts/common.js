@@ -91,25 +91,26 @@ function showItems() {
 }
 
 function moveKitchen() {
-  console.log("Tavern");
+  console.log("Move to kitchen");
   window.location.href = "/kitchen";
 }
 
 function moveTavern() {
-  console.log("Tavern");
+  console.log("Move to tavern");
   window.location.href = "/tavern";
 }
 
 function moveLink() {
-  console.log("Tavern");
+  console.log("Move to link");
   window.location.href = "/link";
 }
 
 function moveLibrary() {
-  console.log("Tavern");
+  console.log("Move to library");
   window.location.href = "/library";
 }
 
 function navRoute(url = "/") {
+  console.log(`Move to ${url}`);
   window.location.href = url;
 }

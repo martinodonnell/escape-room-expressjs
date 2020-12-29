@@ -27,19 +27,19 @@ const userHasAccessToRoom = () => {
   //check user can be in room
   const url = window.location.href.split("/");
   const page = url[url.length - 1];
-  if (page === "tavern") {
+  if (page.startsWith("tavern")) {
     if (getCookie("tavern-key") === null) {
       moveLink();
       alert("You don't have access to the tavern yet");
       return false;
     }
-  } else if (page === "link") {
+  } else if (page.startsWith("link")) {
     if (getCookie("keypad") === null) {
       moveKitchen();
       alert("You don't have access to the links rooms yet");
       return false;
     }
-  } else if (page === "library") {
+  } else if (page.startsWith("library")) {
     if (getCookie("library-key") === null) {
       moveTavern();
       alert("You don't have access to the library yet");
