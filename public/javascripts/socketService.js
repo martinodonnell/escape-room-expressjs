@@ -1,15 +1,16 @@
 var socket = io.connect();
 
-const socketEvent = `newCookie@${getCookie('roomID')}`
+const socketRoomID = getCookie('roomID')
+const socketEvent = `new cookie`
 
-socket.on(socketEvent, function (msg) {
+socket.on(`${socketEvent}@${socketRoomID}`, function (msg) {
   const { key, value } = JSON.parse(msg);
   console.log(key, value);
   setCookie(key, value);
 });
 
 const emitCookie = (roomID, key, value) => {
-  const jsonCookieString = JSON.stringify({ key: key, value: value });
+  const jsonCookieString = JSON.stringify({ key: key, value: value, roomID:roomID });
   socket.emit(socketEvent, jsonCookieString);
  
   fetch(`/api/room/${roomID}/cookie`, {
