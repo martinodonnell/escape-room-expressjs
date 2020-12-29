@@ -267,7 +267,54 @@ const popupItems = {
         popupDetails: [
             {
                 stage: 0,
-                popupType: popupTypes.REMOVE,
+                popupType: popupTypes.DESCRIPTION,
+                title: "Old Barrel",
+                description: "This barrel looks very old",
+                image: "tavern/wooden-barrel.jpg",
+            },
+            {
+                stage: 1,
+                popupType: popupTypes.EMPTY,
+                itemNeeded: 'hammer'
+            },
+            {
+                stage: 2,
+                popupType: popupTypes.CONDITIONAL,
+                itemNeed: 'hammer',
+                isEquited: true,
+                falsePopup: {
+                    stage: 0,
+                    popupType: popupTypes.DESCRIPTION,
+                    cookieKey: "breakBarrel",
+                    title: "Old Barrel",
+                    description: "This barrel looks very old",
+                    image: "tavern/wooden-barrel.jpg",
+                },
+                truePopup: {
+                    stage: 2,
+                    popupType: popupTypes.EQUITMENT,
+                    cookieKey: "breakBarrel",
+                    title: "Old Barrel",
+                    description: "This barrel looks very old",
+                    imageURL: "tavern/wooden-barrel.jpg",
+                    text: "Break barrel"
+                }
+            },
+            {
+                stage: 3,
+                popupType: popupTypes.EQUITMENT,
+                title: "Old Barrel",
+                description: "There is a key in the barrel",
+                cookieKey: "library-key",
+                imageURL: "tavern/broken-barrel.jpeg",
+                text: "Take the key"
+            },
+            {
+                stage: 4,
+                popupType: popupTypes.DESCRIPTION,
+                title: "Old Barrel",
+                description: "This is were I found the key",
+                image: "tavern/broken-barrel.jpeg",
             },
         ]
     },
