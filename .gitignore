@@ -1,3 +1,3 @@
-public/javascripts/firebase/config.js
+public/javascripts/server/firebase/config.js
 *.service-key.json
 node_modules/*
