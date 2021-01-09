@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-var firebaseService = require("../public/javascripts/firebase/firebaseService");
-var authService = require("../public/javascripts/firebase/firebase-auth");
+var firebaseService = require("../public/javascripts/server/firebase/firebaseService");
+var authService = require("../public/javascripts/server/firebase/firebase-auth");
 
 router.post('/auth/signin', authService.signInAnonymously);
 
