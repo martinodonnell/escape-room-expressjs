@@ -98,7 +98,7 @@ const viewer = new PhotoSphereViewer.Viewer({
       id: "my-button",
       title: "Hello world",
       className: "custom-button",
-      content: "Help",
+      content: "Backpack",
       onClick: function () {
         showItems();
       },

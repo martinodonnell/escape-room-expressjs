@@ -25,7 +25,7 @@ function buildItemLine(imgURL, displayName) {
 }
 
 const buildEquitItem = (cookieKey, displayName) => {
-  return `<p><a onClick=\"selectItem(${cookieKey},${displayName})\" target=\"_blank\">${displayName}</a></p>`;
+  return `<p><a onClick=\"selectItem('${cookieKey}','${displayName}')\" target=\"_blank\">${displayName}</a></p>`;
 };
 
 const generateViewItemsHTML = (item) => {
