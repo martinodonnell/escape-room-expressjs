@@ -58,6 +58,10 @@ const handleJoinRoom = async () => {
     return;
   }
 
+  joinRoom(roomID, playerName)
+};
+
+const joinRoom = (roomID, playerName) => {
   const body = { playerName: playerName };
 
   fetch(`/api/room/${roomID}/join`, {
@@ -78,7 +82,12 @@ const handleJoinRoom = async () => {
       navigateToWaitingRoom();
     }
   });
-};
+}
+
+const returnHome = () => {
+  localStorage.clear();
+  window.location.href = "/";
+}
 
 
 fetch(`/api/auth/signin`, {

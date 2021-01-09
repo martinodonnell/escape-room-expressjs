@@ -10,6 +10,10 @@ router.get("/complete", function (req, res, next) {
   res.render("complete", { title: "Completed" });
 });
 
+router.get("/hostRoom", function (req, res, next) {
+  res.render("hostRoom", { title: "Setup Room" });
+});
+
 const routes = [
   { url: "kitchen", title: "Kitchen", js: "kitchen" },
   { url: "tavern", title: "Tavern", js: "tavern" },
