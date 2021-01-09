@@ -53,12 +53,12 @@ const updateMarker = (svgID, content) => {
 const generateNavigationPopup = (svgID) => {
   return `<div id=${svgID}
             <b>Correct password, you can now move through time</b>
-            <button class=button onclick=moveTavern()>
-              Tavern
-            </button>
             <button class=button onclick=moveLink()>
               Link
             </button>
+            <button class=button onclick=moveTavern()>
+              Tavern
+            </button>            
             <button class=button onclick=moveLibrary()>
               Library
             </button>

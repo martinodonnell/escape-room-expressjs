@@ -120,9 +120,9 @@ const popupItems = {
             {
                 stage: 0,
                 popupType: popupTypes.PASSWORD,
-                cookieKey: "kettleCode",
+                cookieKey: "book-password-recipe",
                 title: "Book",
-                description: "There is a code and lock on one of these pages",
+                description: "There is a code and lock on one of these pages\n",
                 answer: "71046",
                 placeholder: "Enter Code",
                 image: 'library/recipe-codes.png',
@@ -133,7 +133,7 @@ const popupItems = {
                 popupType: popupTypes.EQUITMENT,
                 title: "Loose Recipe in book",
                 description: "",
-                cookieKey: "tavern-key",
+                cookieKey: "final-recipe-page",
                 imageURL: "library/missing-recipe.png",
                 text: "Take recipe"
             },

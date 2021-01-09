@@ -314,6 +314,7 @@ const popupItems = {
                     'sugar',
                     'chicken',
                     'goblet-water',
+                    'book-password-recipe'
                 ],
                 incorrectMessage: 'You do not have all the ingredients'
             },
