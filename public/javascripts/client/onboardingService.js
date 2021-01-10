@@ -28,10 +28,10 @@ const clearCookies = () => {
   setCookie("authToken", authToken);
 }
 
-const createRoom = () => {
+const createRoom = async () => {
   clearCookies()
   
-  fetch(`/api/room/create`, {
+  return await fetch(`/api/room/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,6 +42,7 @@ const createRoom = () => {
     var roomID = response["roomID"];
     if (roomID) {
       setRoomIDCookie(roomID);
+      return roomID;
     } else {
       alert("Error while creatinig room");
     }

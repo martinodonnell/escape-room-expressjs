@@ -32,7 +32,7 @@
           <div>
             <div>
               <h5 class="text-white">Code:
-                <b id="room-code-display">Processing. If you still see this refresh the screen</b>
+                <b id="room-code-display">Processing. If you still see this after 5 seconds, please refresh the screen or try again later</b>
               </h5>
              
               <button class="btn btn-default" onclick="joinRoom(getCookie('roomID'), 'ADMIN')">
@@ -122,8 +122,13 @@
       if(!getCookie('roomID')){
         createRoom()
       }
-      var roomId = getCookie('roomID')
-      document.getElementById("room-code-display").innerHTML = roomId
+      setTimeout(function(){ 
+        console.log(getCookie('roomID'))
+        var roomId = getCookie('roomID')
+        document.getElementById("room-code-display").innerHTML = roomId
+      }, 3000);
+
+      
 
     </script>
   </body>
