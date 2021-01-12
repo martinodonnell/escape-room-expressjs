@@ -26,7 +26,6 @@ const popupTypes = {
   FINISHED: "finished"
 }
 
-
 const viewItems = [
   {
     itemType: "view",
@@ -55,19 +54,19 @@ const viewItems = [
   {
     itemType: "view",
     cookieKey: "cook-book",
-    imageURL: "kitchen/cook-book.pdf",
+    imageURL: "kitchen/cookbook.pdf",
     displayName: "Cook Book",
   },
   {
     itemType: "view",
     cookieKey: "kettle-note",
-    imageURL: "link/kettle-note.pdf",
+    imageURL: "link/kettle-note.png",
     displayName: "Kettle Notes",
   },
   {
     itemType: "view",
     cookieKey: "riddle-book",
-    imageURL: "link/riddle-book.pdf",
+    imageURL: "link/riddle-book.png",
     displayName: "Riddle Book",
   },
   {

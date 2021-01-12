@@ -119,7 +119,6 @@ const popupItems = {
         svgID: "book-svg",
         itemType: "view",
         cookieKey: "riddle-book",
-        imageURL: "link/riddleBook.pdf",
         displayName: "Coffee Paper",
         polylineRad: [
             [4.9008742213548935, -0.10003900095265594],
@@ -321,7 +320,7 @@ const popupItems = {
             {
                 stage: 6,
                 popupType: popupTypes.DESCRIPTION,
-                title: "Cauldrosdn",
+                title: "Cauldron",
                 description: "This looks good. Time to talk to the cat again",
             },
         ],
