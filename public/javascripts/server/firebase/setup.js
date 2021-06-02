@@ -7,8 +7,10 @@ var config = require("./config");
 
 firebase.initializeApp(config.firebaseConfig);
 admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-    databaseURL: config.firebaseConfig.databaseURL
+    apiKey: config.firebaseConfig.apiKey,
+    authDomain: config.firebaseConfig.authDomain,
+    databaseURL: config.firebaseConfig.databaseURL,
+    projectId: config.firebaseConfig.projectId
 });
 
 exports.firebase = firebase;
